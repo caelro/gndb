@@ -2,15 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="38e21bd9-973d-4b9e-a104-ca54e13e944d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/classes/sqlite.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db.sqlite" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/654d8016-fb72-4bb0-be3a-8a9fe97ea2a1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/654d8016-fb72-4bb0-be3a-8a9fe97ea2a1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/classes/sqlite3.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/classes/template.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/main.tpl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/sqlite.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/sqlite.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,30 +35,7 @@
     <expand>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="main.db" type="feb32156:DbDataSourceImpl" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="main.db" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="main.db" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="main.db" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
-        <item name="peoples: table" type="3d80ac25:SqliteImplModel$Table" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="main.db" type="feb32156:DbDataSourceImpl" />
-        <item name="collations" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="db" type="feb32156:DbDataSourceImpl" />
       </path>
     </expand>
     <select />
@@ -78,9 +54,11 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="sqlite.xerial" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -96,8 +74,18 @@
       <workItem from="1580890848393" duration="81000" />
       <workItem from="1580890984029" duration="84000" />
       <workItem from="1580891384163" duration="904000" />
-      <workItem from="1581051860826" duration="1576000" />
+      <workItem from="1581051860826" duration="2812000" />
+      <workItem from="1581057786304" duration="1862000" />
+      <workItem from="1581066273225" duration="5722000" />
     </task>
+    <task id="LOCAL-00001" summary="add sqlite class">
+      <created>1581053905090</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1581053905091</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -105,23 +93,65 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="add sqlite class" />
+    <option name="LAST_COMMIT_MESSAGE" value="add sqlite class" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="94" y="147" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1581053087066">
+    <state x="220" y="147" key="#CLI_Interpreters" timestamp="1581058746868">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
-    <state x="94" y="147" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.984@0.0.1280.984" timestamp="1581053087066" />
-    <state x="265" y="87" key="CommitChangelistDialog2" timestamp="1581053635282">
+    <state x="220" y="147" key="#CLI_Interpreters/0.0.1280.984@0.0.1280.984" timestamp="1581058746868" />
+    <state x="347" y="83" key="#PHP" timestamp="1581058778366">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
-    <state x="265" y="87" key="CommitChangelistDialog2/0.0.1280.984@0.0.1280.984" timestamp="1581053635282" />
-    <state x="336" y="316" key="com.intellij.ide.util.TipDialog" timestamp="1581051861602">
+    <state x="347" y="83" key="#PHP/0.0.1280.984@0.0.1280.984" timestamp="1581058778366" />
+    <state x="94" y="147" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1581078511596">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
-    <state x="336" y="316" key="com.intellij.ide.util.TipDialog/0.0.1280.984@0.0.1280.984" timestamp="1581051861602" />
-    <state x="449" y="409" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1581053551896">
+    <state x="94" y="147" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.984@0.0.1280.984" timestamp="1581078511596" />
+    <state x="400" y="295" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1581058264156">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
-    <state x="449" y="409" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.984@0.0.1280.984" timestamp="1581053551896" />
+    <state x="400" y="295" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.984@0.0.1280.984" timestamp="1581058264156" />
+    <state x="359" y="181" key="#index.php" timestamp="1581058794670">
+      <screen x="0" y="0" width="1280" height="984" />
+    </state>
+    <state x="359" y="181" key="#index.php/0.0.1280.984@0.0.1280.984" timestamp="1581058794670" />
+    <state x="265" y="87" key="CommitChangelistDialog2" timestamp="1581053899599">
+      <screen x="0" y="0" width="1280" height="984" />
+    </state>
+    <state x="265" y="87" key="CommitChangelistDialog2/0.0.1280.984@0.0.1280.984" timestamp="1581053899599" />
+    <state x="420" y="234" key="FileChooserDialogImpl" timestamp="1581058079976">
+      <screen x="0" y="0" width="1280" height="984" />
+    </state>
+    <state x="420" y="234" key="FileChooserDialogImpl/0.0.1280.984@0.0.1280.984" timestamp="1581058079976" />
+    <state width="196" height="457" key="HiddenNamespacesPopup" timestamp="1581078515176">
+      <screen x="0" y="0" width="1280" height="984" />
+    </state>
+    <state width="196" height="457" key="HiddenNamespacesPopup/0.0.1280.984@0.0.1280.984" timestamp="1581078515176" />
+    <state x="470" y="307" key="NewPhpClassDialog" timestamp="1581066897300">
+      <screen x="0" y="0" width="1280" height="984" />
+    </state>
+    <state x="470" y="307" key="NewPhpClassDialog/0.0.1280.984@0.0.1280.984" timestamp="1581066897300" />
+    <state x="506" y="203" key="RollbackChangesDialog" timestamp="1581070407047">
+      <screen x="0" y="0" width="1280" height="984" />
+    </state>
+    <state x="506" y="203" key="RollbackChangesDialog/0.0.1280.984@0.0.1280.984" timestamp="1581070407047" />
+    <state x="141" y="135" key="SettingsEditor" timestamp="1581058022680">
+      <screen x="0" y="0" width="1280" height="984" />
+    </state>
+    <state x="141" y="135" key="SettingsEditor/0.0.1280.984@0.0.1280.984" timestamp="1581058022680" />
+    <state x="232" y="225" key="Vcs.Push.Dialog.v2" timestamp="1581053922792">
+      <screen x="0" y="0" width="1280" height="984" />
+    </state>
+    <state x="232" y="225" key="Vcs.Push.Dialog.v2/0.0.1280.984@0.0.1280.984" timestamp="1581053922792" />
+    <state x="336" y="316" key="com.intellij.ide.util.TipDialog" timestamp="1581066625437">
+      <screen x="0" y="0" width="1280" height="984" />
+    </state>
+    <state x="336" y="316" key="com.intellij.ide.util.TipDialog/0.0.1280.984@0.0.1280.984" timestamp="1581066625437" />
+    <state x="449" y="409" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1581070714104">
+      <screen x="0" y="0" width="1280" height="984" />
+    </state>
+    <state x="449" y="409" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.984@0.0.1280.984" timestamp="1581070714104" />
   </component>
 </project>
