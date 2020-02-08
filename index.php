@@ -1,9 +1,6 @@
 <?php
 require("classes/sqlite.php");
 require("classes/template.php");
-// TODO: read global settings
-// TODO: connect all classes
-// TODO: run main program
 $parse->get_tpl('templates/main.tpl'); //Файл который мы будем парсить
 $parse->set_tpl('{TITLE}', 'Супер сайт'); //Установка переменной {TITLE}
 $parse->set_tpl('{BGCOLOR}', '#F2F2F2'); //Установка переменной { BGCOLOR }
@@ -15,9 +12,20 @@ print $parse->template; //Выводим нашу страничку
 // initialize
 $db = new sqlite('db.sqlite');
 
-// create the database structure
-$query = 'CREATE TABLE IF NOT EXISTS "foobar" (
-            "id" INTEGER PRIMARY KEY AUTOINCREMENT,
-            "name" TEXT
-          );';
-$db->query($query);
+$query = 'DROP TABLE IF EXISTS "foobar";';
+try {
+    $db->query($query);
+} catch (Exception $e) {
+}
+
+$query = 'DROP TABLE IF EXISTS "peoples";';
+try {
+    $db->query($query);
+} catch (Exception $e) {
+}
+
+$query = 'CREATE TABLE IF NOT EXISTS "peoples" ("id" INTEGER PRIMARY KEY AUTOINCREMENT, "name" TEXT, "birthday" DATE);';
+try {
+    $db->query($query);
+} catch (Exception $e) {
+}
