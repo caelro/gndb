@@ -11,21 +11,3 @@ print $parse->template; //Выводим нашу страничку
 
 // initialize
 $db = new sqlite('db.sqlite');
-
-$query = 'DROP TABLE IF EXISTS "foobar";';
-try {
-    $db->query($query);
-} catch (Exception $e) {
-}
-
-$query = 'DROP TABLE IF EXISTS "peoples";';
-try {
-    $db->query($query);
-} catch (Exception $e) {
-}
-
-$query = 'CREATE TABLE IF NOT EXISTS "peoples" ("id" INTEGER PRIMARY KEY AUTOINCREMENT, "name" TEXT, "birthday" DATE);';
-try {
-    $db->query($query);
-} catch (Exception $e) {
-}
