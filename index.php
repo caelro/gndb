@@ -1,6 +1,8 @@
 <?php
 require("classes/sqlite.php");
 require("classes/template.php");
+
+
 $parse->get_tpl('templates/main.tpl'); //Файл который мы будем парсить
 $parse->set_tpl('{TITLE}', 'Супер сайт'); //Установка переменной {TITLE}
 $parse->set_tpl('{BGCOLOR}', '#F2F2F2'); //Установка переменной { BGCOLOR }
