@@ -12,4 +12,4 @@ print $parse->template; //Выводим нашу страничку
 
 
 // initialize
-$db = new sqlite('db.sqlite');
+//$db = new sqlite('db.sqlite');
