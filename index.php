@@ -5,6 +5,7 @@ require("classes/template.php");
 
 $parse->get_tpl('templates/main.tpl'); //Файл который мы будем парсить
 $parse->set_tpl('{TITLE}', 'Супер сайт'); //Установка переменной {TITLE}
+$parse->set_tpl('{ALERT}', 'alert');
 $parse->set_tpl('{BGCOLOR}', '#F2F2F2'); //Установка переменной { BGCOLOR }
 $parse->set_tpl('{SOMETPLTAGS}', '<span style="color: red; ">Это текст обрамленый красным  цветом</span>'); //Установка переменной {SOMETPLTAGS}
 $parse->tpl_parse(); //Парсим
