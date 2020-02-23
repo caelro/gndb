@@ -1,35 +1,37 @@
-<html>
+<!DOCTYPE html>
+<html lang="ru">
 <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>{TITLE}</title>
-	<link type="text/css" rel="stylesheet" href="../css/bootstrap.css" />
-	<!-- <link type="text/css" rel="stylesheet" href="../css/style.css" /> -->
-	<!-- <link type="text/css" rel="stylesheet" href="../css/test-table.css" /> -->
+	<link rel="stylesheet" href="../css/bootstrap.css" />
+	<link rel="stylesheet" href="../css/font-awesome.min.css">
+	<link rel="stylesheet" href="../css/style.css" />
 </head>
-<body style="background-color: {BGCOLOR};">
-
-	<!-- <div class="wrapper"> -->
-		<!-- <div class="header"> -->
-			<div class="alert alert-info" role="alert">{ALERT}</div>
-			<!-- </div> -->
-			<!-- <div class="content"> -->
-				<!-- <div class="navigate">{SOMETPLTAGS}</div> -->
-				<!-- <div class="main"> -->
-					<div class="container">
-						<div class="row">
-							<div class="col-3 col-lg-12">.col-12 .col-lg-3</div>
-							<div class="col-9 col-lg-12">.col-12 .col-lg-9</div>
-						</div>
-					</div>
-					<!-- </div> -->
-					<!-- <table></table> -->
-					<!-- </div> -->
-					<!-- </div> -->
-					<!-- <div class="footer">footer</div> -->
-					<!-- </div> -->
-
-					<!-- <script type="text/javascript" src="../js/test-table.js"></script> -->
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> -->
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">PR<i class="fa fa-circle"></i>GER</a>
+      </div>
+			<div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="active"><a href="#">Домой</a></li>
+          <li><a href="#">Про нас</a></li>
+          <li><a href="#">Сервсиы</a></li>
+          <li><a href="#">Работы</a></li>
+          <li><a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i></a></li>
+        </ul>
+      </div>
+		</div>
+	</div>
+	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>-->
+    <script src="../js/jquery-3.4.1.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 </body>
 </html>
