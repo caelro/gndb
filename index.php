@@ -1,13 +1,22 @@
 <?php
-require("classes/sqlite.php");
-require("classes/template.php");
+require_once("classes/sqlite.php");
+require_once("classes/template.php");
+require_once("classes/funcs.php");
 
+$main = new template;
+$main->get_tpl('templates/main.tpl');
 
-$parse->get_tpl('templates/main.tpl'); //Файл который мы будем парсить
-$parse->set_tpl('{TITLE}', 'Супер сайт'); //Установка переменной {TITLE}
-$parse->tpl_parse(); //Парсим
-print $parse->template; //Выводим нашу страничку
+$menu = new template;
+$menu->get_tpl('templates/menu.tpl');
+$menu->tpl_parse();
 
+$content = new template;
+$content->get_tpl('templates/content.tpl');
+$content->set_tpl('{ALL_PEOPLES}', list_peoples());
+$content->tpl_parse();
 
-// initialize
-//$db = new sqlite('db.sqlite');
+$main->set_tpl('{TITLE}', 'ООО "Газпром газнадзор" Волгоградский филиал');
+$main->set_tpl('{MENU}', $menu->template);
+$main->set_tpl('{CONTENT}', $content->template);
+$main->tpl_parse();
+print $main->template;

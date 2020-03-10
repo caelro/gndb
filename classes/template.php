@@ -26,4 +26,3 @@ class template
         }
     }
 }
-$parse = new template;
