@@ -58,13 +58,25 @@ hr {
 }
 
 .menu {
+  height: 100%;
   width: 200px;
   float: left;
-  background-color: red;
-  margin-right: 10px;
+  background-color: cyan;
+  /*margin-right: 20px;*/
+  position: fixed;
+  z-index: 1;
+/*  top: 10px;
+  left: 10px;*/
+  overflow-x: hidden;
 }
 
 .content {
   background-color: yellow;
-  overflow-x: scroll;
+  /*overflow-x: scroll;*/
+  /*padding-left: 10px;*/
+  margin-left: 210px;
+}
+
+.wid {
+  width: 190px;
 }
