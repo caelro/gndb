@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css?family=Lato|Raleway&display=swap');
+/*@import url('https://fonts.googleapis.com/css?family=Lato|Raleway&display=swap');*/
 
 body {
   background-color: #f2f2f2;
-  font-family: "Lato", serif;
+  font-family: "Arial Narrow", Arial, serif;
   font-weight: 300;
   font-size: 16px;
   color: #555;
@@ -15,7 +15,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6{
-  font-family: "Raleway", serif;
+  font-family: "Arial Narrow", Arial, serif;
   font-weight: 300;
   color: #333;
 }
@@ -27,10 +27,6 @@ p {
 
 .centered {
   text-align: center;
-}
-
-li {
-  text-decoration: none;
 }
 
 a {
@@ -61,7 +57,7 @@ hr {
   height: 100%;
   width: 200px;
   float: left;
-  background-color: cyan;
+  /*background-color: cyan;*/
   /*margin-right: 20px;*/
   position: fixed;
   z-index: 1;
@@ -71,7 +67,7 @@ hr {
 }
 
 .content {
-  background-color: yellow;
+  /*background-color: yellow;*/
   /*overflow-x: scroll;*/
   /*padding-left: 10px;*/
   margin-left: 210px;

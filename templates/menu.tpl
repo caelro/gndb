@@ -17,7 +17,8 @@
 			<option value="val4">Текущее полугодие</option>
 			<option value="val5">Текущий год</option>
 		</select>
-		<input type="date">
+		<input type="date" name="begdat">
+		<input type="date" name="enddat">
 		<input type="submit" value="Отправить">
 	</form>
 </div>
