@@ -22,5 +22,6 @@ function list_peoples() {
 				'</tr>';
 	}
 	$res = '<tr><td colspan="3" align="center">' . $val['department'] . '</td></tr>' . $res;
+	$res = '<table>' . $res . '</table>';
 	return $res;
 }

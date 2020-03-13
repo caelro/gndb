@@ -19,7 +19,7 @@ function getURL() {
   return $res;
 }
 
-echo getURL()[1];
+// echo getURL()[0];
 
 $main = new template;
 $main->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "main.tpl");
@@ -29,8 +29,11 @@ $menu->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "menu.tpl");
 $menu->tpl_parse();
 
 $content = new template;
-$content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "content.tpl");
-$content->set_tpl('{ALL_PEOPLES}', list_peoples());
+// $content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "content.tpl");
+// $content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "people.tpl");
+$content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "mission.tpl");
+$content->set_tpl('{CONT_HEAD}', 'Список сотрудников:');
+$content->set_tpl('{CONT_BODY}', list_peoples());
 $content->tpl_parse();
 
 $main->set_tpl('{TITLE}', 'ООО "Газпром газнадзор" Волгоградский филиал');

@@ -1,4 +1,2 @@
-<div class="centered">Список сотрудников:</div>
-<table>
-	{ALL_PEOPLES}
-</table>
+<div class="centered">{CONT_HEAD}</div>
+{CONT_BODY}
