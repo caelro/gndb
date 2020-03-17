@@ -6,8 +6,20 @@ function getpeoples() {
 		SELECT * FROM peoples
 		JOIN departments ON peoples.iddepartment = departments.id
 		JOIN positions ON peoples.idposition = positions.id
-		WHERE peoples.iddepartment = 3
+		-- WHERE peoples.iddepartment = 3
 		ORDER BY peoples.iddepartment, peoples.idposition
+		");
+}
+
+function getmissions() {
+	$db = new sqlite('db.sqlite');
+	return $db->queryAll("
+		SELECT * FROM missions
+		JOIN peoples ON peoples.id = missions.idpeople
+		JOIN mission_types ON mission_types.id = missions.type
+		JOIN objects ON objects.id = missions.object
+		-- WHERE missions.id = 1
+		-- ORDER BY peoples.iddepartment, peoples.idposition
 		");
 }
 
@@ -25,16 +37,12 @@ function showpeoples() {
 	return $res;
 }
 
-function getmissions() {
-	$db = new sqlite('db.sqlite');
-	return $db->queryAll("
-		SELECT * FROM missions
-		JOIN peoples ON peoples.id = missions.idpeople
-		JOIN mission_types ON mission_types.id = missions.type
-		JOIN objects ON objects.id = missions.object
-		-- WHERE missions.id = 1
-		-- ORDER BY peoples.iddepartment, peoples.idposition
-		");
+function optonslistpeoples() {
+	$res = '';
+	foreach (getpeoples() as $val) {
+		$res .= '<option value="p' . $val['id'] . '">' . $val['lname'] . ' ' . $val['fname'] . ' ' . $val['mname'] . '</option>';
+	}
+	return $res;
 }
 
 function showmissions() {
