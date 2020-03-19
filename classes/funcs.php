@@ -1,5 +1,12 @@
 <?php
 
+function getdepartments() {
+	$db = new sqlite('db.sqlite');
+	return $db->queryAll("
+		SELECT * FROM departments
+		");
+}
+
 function getpeoples() {
 	$db = new sqlite('db.sqlite');
 	return $db->queryAll("
@@ -34,6 +41,14 @@ function showpeoples() {
 	}
 	$res = '<tr><td colspan="3" align="center">' . $val['department'] . '</td></tr>' . $res;
 	$res = '<table>' . $res . '</table>';
+	return $res;
+}
+
+function optonslistdepartments() {
+	$res = '';
+	foreach (getdepartments() as $val) {
+		$res .= '<option value="d' . $val['id'] . '">' . $val['department'] . '</option>';
+	}
 	return $res;
 }
 

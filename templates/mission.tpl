@@ -1,5 +1,9 @@
-<form action="/" method="post">
-	<select name="people">
+<form action="/" method="post" name="addmission">
+	<select name="department" onselect="enpeople()">
+		<option disabled selected>Отдел</option>
+		{LIST_DEPARTMENTS}
+	</select><br />
+	<select name="people" disabled>
 		<option disabled selected>Ф.И.О.</option>
 		{LIST_PEOPLES}
 		<!-- <option value="id4">Цыбулин Александр Владимирович</option> -->
@@ -22,3 +26,12 @@
 	</select><br />
 	<input type="submit" name="addpeople" value="Отправить">
 </form>
+
+<script type="text/javascript">
+	function enpeople() {
+		if (document.addmission.department.selectedIndex > 0)
+			document.addmission.people.disabled = 0;
+		else
+			document.addmission.people.disabled = 1;
+	}
+</script>

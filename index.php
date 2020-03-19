@@ -48,6 +48,7 @@ switch ($url[0]) {
 		break;
 	case 'addmissions':
 		$content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "mission.tpl");
+		$content->set_tpl('{LIST_DEPARTMENTS}', optonslistdepartments());
 		$content->set_tpl('{LIST_PEOPLES}', optonslistpeoples());
 		break;
 	case 'report':
