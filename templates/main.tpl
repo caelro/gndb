@@ -7,6 +7,7 @@
 	<!-- <link rel="stylesheet" href="../css/bootstrap.css"/> -->
 	<!-- <link rel="stylesheet" href="../css/font-awesome.min.css"> -->
 	<link rel="stylesheet" href="{ROOT}css/style.css"/>
+	<script src="{ROOT}js/jquery-3.4.1.min.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -17,7 +18,6 @@
 					{CONTENT}
 				</div>
 	</div>
-	<script src="{ROOT}js/jquery-3.4.1.min.js"></script>
 	<!-- <script src="../js/bootstrap.min.js"></script> -->
 </body>
 </html>

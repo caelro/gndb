@@ -88,6 +88,24 @@ td, th {
   margin-left: 210px;
 }
 
-.wid {
-  width: 190px;
+.maxmenuwidth {
+  /*width: 190px;*/
+  max-width: 190px;
+}
+
+#people {
+  color: gray;
+}
+
+#people.active {
+  color: black;
+}
+
+#addmission select {
+  max-width: 400px;
+  color: gray;
+}
+
+#addmission select.active {
+  color: black;
 }

@@ -3,13 +3,13 @@
 <hr>
 <div class="centered">ОТЧЕТ
 	<form action="/" method="post">
-		<select class="wid" name="dep">
+		<select class="maxmenuwidth" name="dep">
 			<option disabled>Выберите отдел</option>
 			<option selected value="val1">Отдел по контролю за эффективным использованием газа</option>
 			<option value="val2">val2</option>
 			<option value="val3">val3</option>
 		</select>
-		<select class="wid" name="per">
+		<select class="maxmenuwidth" name="per">
 			<option disabled>Выберите период</option>
 			<option selected value="val1">Текущая неделя</option>
 			<option value="val2">Текущий месяц</option>

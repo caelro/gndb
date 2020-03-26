@@ -48,8 +48,9 @@ switch ($url[0]) {
 		break;
 	case 'addmissions':
 		$content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "mission.tpl");
-		$content->set_tpl('{LIST_DEPARTMENTS}', optonslistdepartments());
-		$content->set_tpl('{LIST_PEOPLES}', optonslistpeoples());
+		$content->set_tpl('{OPTIONS_DEPARTMENTS}', optons_departments());
+		$content->set_tpl('{OPTIONS_PEOPLES}', optons_peoples());
+		$content->set_tpl('{OPTIONS_TYPES}', optons_types());
 		break;
 	case 'report':
 		$content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "report.tpl");
