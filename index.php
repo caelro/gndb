@@ -51,6 +51,7 @@ switch ($url[0]) {
 		$content->set_tpl('{OPTIONS_DEPARTMENTS}', optons_departments());
 		$content->set_tpl('{OPTIONS_PEOPLES}', optons_peoples());
 		$content->set_tpl('{OPTIONS_TYPES}', optons_types());
+		$content->set_tpl('{OPTIONS_OBJ}', optons_objects());
 		break;
 	case 'report':
 		$content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "report.tpl");

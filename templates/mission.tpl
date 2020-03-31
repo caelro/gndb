@@ -1,44 +1,36 @@
 <script>
 	$( document ).ready(function() {
-		// $("#people option").hide();
 		showDepartment(0);
 	});
 	function showDepartment(department) {
 		$("#people option").hide();
-		$("#people").removeClass('active').prop('selectedIndex',0);
+		// $("#people").removeClass('active').prop('selectedIndex',0);
+		$("#people").prop('selectedIndex',0);
 		$("#people option[otdel=" + department + "]").show();
-	}
-	function selectDepartment() {
-		$("#people").addClass('active');
-	}
-	function changeActive() {
-		$("select").addClass('active').prop("id","type");
 	}
 </script>
 
 <form action="/" method="post" id="addmission" name="addmission">
-	<select name="department" id="department" onchange="showDepartment(this.value); this.style.color='black'">
-		<option disabled selected hidden>Отдел</option>
+	<select name="department" id="department" required="" onchange="showDepartment(this.value)">
+		<option disabled="" selected="" hidden="" value="">Отдел</option>
 		{OPTIONS_DEPARTMENTS}
 	</select><br />
-	<select name="people" id="people" onchange="selectDepartment()">
-		<option disabled selected hidden>Ф.И.О.</option>
+	<select name="people" id="people" required="">
+		<option disabled="" selected="" hidden="" value="">Ф.И.О.</option>
 		{OPTIONS_PEOPLES}
 	</select><br />
-	<select name="type" id="type" onchange="changeActive()">
-		<option disabled selected hidden>тип миссии</option>
+	<select name="type" id="type" required="">
+		<option disabled="" selected="" hidden="" value="">тип события</option>
 		{OPTIONS_TYPES}
-		<!-- <option value="K">К</option> -->
-		<!-- <option value="RK">РК</option> -->
 	</select><br />
-	День начала:<br />
-	<input type="date" name="bdate" value="2020-04-01"><br />
-	День окончания:<br />
-	<input type="date" name="edate" value="2020-04-18"><br />
-	<select name="obj">
-		<option disabled selected hidden>объект</option>
-		<option value="gda">ГДА</option>
-		<option value="gtv">ГТВ</option>
-	</select><br />
+	<select name="obj" required="">
+		<option disabled="" selected="" hidden="" value="">объект</option>
+		{OPTIONS_OBJ}
+	</select>&nbsp;<a href="/">редактировать</a><br />
+	Дата начала:<br />
+	<input type="date" name="bdate" required=""><br />
+	Дата окончания:<br />
+	<input type="date" name="edate" required=""><br />
+	<input type="text" name="num" placeholder="Номер приказа"><br />
 	<input type="submit" name="addpeople" value="Отправить">
 </form>

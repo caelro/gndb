@@ -53,6 +53,14 @@ function optons_types() {
 	return $res;
 }
 
+function optons_objects() {
+	$res = '';
+	foreach (getdb("objects") as $val) {
+		$res .= '<option style="color:black" value="' . $val['id'] . '" name="object">' . $val['object'] . '</option>';
+	}
+	return $res;
+}
+
 // function showmissions() {
 // 	$res = '';
 // 	foreach (getmissions() as $val) {

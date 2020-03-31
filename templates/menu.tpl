@@ -3,15 +3,15 @@
 <hr>
 <div class="centered">ОТЧЕТ
 	<form action="/" method="post">
-		<select class="maxmenuwidth" name="dep">
-			<option disabled>Выберите отдел</option>
-			<option selected value="val1">Отдел по контролю за эффективным использованием газа</option>
+		<select name="dep" required>
+			<option value="" selected="" disabled="" hidden="">Выберите отдел</option>
+			<option value="val1">Отдел по контролю за эффективным использованием газа</option>
 			<option value="val2">val2</option>
 			<option value="val3">val3</option>
 		</select>
-		<select class="maxmenuwidth" name="per">
-			<option disabled>Выберите период</option>
-			<option selected value="val1">Текущая неделя</option>
+		<select name="per" required>
+			<option value="" selected="" disabled="" hidden="">Выберите период</option>
+			<option value="val1">Текущая неделя</option>
 			<option value="val2">Текущий месяц</option>
 			<option value="val3">Следующий месяц</option>
 			<option value="val4">Текущее полугодие</option>
