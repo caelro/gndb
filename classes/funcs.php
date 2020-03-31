@@ -32,7 +32,7 @@ function getdb($view) {
 function optons_departments() {
 	$res = '';
 	foreach (getdb("departments") as $val) {
-		$res .= '<option style="color:black" value="' . $val['id'] . '" name="department">' . $val['department'] . '</option>';
+		$res .= '<option value="' . $val['id'] . '" name="department">' . $val['department'] . '</option>';
 	}
 	return $res;
 }
@@ -40,7 +40,7 @@ function optons_departments() {
 function optons_peoples() {
 	$res = '';
 	foreach (getdb("all_peoples") as $val) {
-		$res .= '<option style="color:black" value="' . $val['id'] . '" name="people" otdel="' . $val['departmentid'] . '">' . $val['lastname'] . ' ' . $val['firstname'] . ' ' . $val['middlename'] . '</option>';
+		$res .= '<option value="' . $val['id'] . '" name="people" otdel="' . $val['departmentid'] . '">' . $val['lastname'] . ' ' . $val['firstname'] . ' ' . $val['middlename'] . '</option>';
 	}
 	return $res;
 }
@@ -48,7 +48,15 @@ function optons_peoples() {
 function optons_types() {
 	$res = '';
 	foreach (getdb("mission_types") as $val) {
-		$res .= '<option style="color:black" value="' . $val['id'] . '" name="type">' . $val['type'] . '</option>';
+		$res .= '<option value="' . $val['id'] . '" name="type">' . $val['type'] . '</option>';
+	}
+	return $res;
+}
+
+function optons_objects() {
+	$res = '';
+	foreach (getdb("objects") as $val) {
+		$res .= '<option value="' . $val['id'] . '" name="object">' . $val['object'] . '</option>';
 	}
 	return $res;
 }

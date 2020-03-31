@@ -10,7 +10,7 @@
 	}
 </script>
 
-<form action="/" method="post" id="addmission" name="addmission">
+<form action="/addmission" method="post" id="addmission" name="addmission">
 	<select name="department" id="department" required="" onchange="showDepartment(this.value)">
 		<option disabled="" selected="" hidden="" value="">Отдел</option>
 		{OPTIONS_DEPARTMENTS}
@@ -32,5 +32,5 @@
 	Дата окончания:<br />
 	<input type="date" name="edate" required=""><br />
 	<input type="text" name="num" placeholder="Номер приказа"><br />
-	<input type="submit" name="addpeople" value="Отправить">
+	<input type="submit" name="addmission" value="Отправить">
 </form>
