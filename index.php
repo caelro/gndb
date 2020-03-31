@@ -24,11 +24,17 @@ $url = getURL(); // echo getURL()[0];
 if($_POST['report'])
 	$url[0]='report';
 
+if($_POST)
+	foreach ($_POST as $key => $value) {
+		printf($key . " - " . $_POST[$key] . "<br />");
+	}
+
 $main = new template;
 $main->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "main.tpl");
 
 $menu = new template;
 $menu->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "menu.tpl");
+$menu->set_tpl('{OPTIONS_DEPARTMENTS}', optons_departments());
 $menu->tpl_parse();
 
 $content = new template;
@@ -38,7 +44,7 @@ switch ($url[0]) {
 		$content->set_tpl('{CONT_HEAD}', 'Список сотрудников:');
 		$content->set_tpl('{CONT_BODY}', showpeoples());
 		break;
-	case 'addpeoples':
+	case 'addpeople':
 		$content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "people.tpl");
 		break;
 	case 'missions':
@@ -46,11 +52,12 @@ switch ($url[0]) {
 		$content->set_tpl('{CONT_HEAD}', 'Список миссий:');
 		$content->set_tpl('{CONT_BODY}', showmissions());
 		break;
-	case 'addmissions':
+	case 'addmission':
 		$content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "mission.tpl");
 		$content->set_tpl('{OPTIONS_DEPARTMENTS}', optons_departments());
 		$content->set_tpl('{OPTIONS_PEOPLES}', optons_peoples());
 		$content->set_tpl('{OPTIONS_TYPES}', optons_types());
+		$content->set_tpl('{OPTIONS_OBJ}', optons_objects());
 		break;
 	case 'report':
 		$content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "report.tpl");
