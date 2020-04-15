@@ -5,6 +5,15 @@ function getdb($view) {
 	return $db->queryAll("SELECT * FROM " . $view);
 }
 
+function setdb($args) {
+	$db = new sqlite('db.sqlite');
+	if ($args['addmission']) {
+		$res = sprintf("INSERT INTO missions ('peopleid', 'typeid', 'begin', 'end', 'objectid') 
+			VALUES(%s, %s, '%s', '%s', %s)", $_POST['people'], $_POST['type'], $_POST['bdate'], $_POST['edate'], $_POST['obj']);
+		$db->query($res);
+	}
+}
+
 // function getmissions() {
 // 	$db = new sqlite('db.sqlite');
 // 	return $db->queryAll("
@@ -37,6 +46,14 @@ function optons_departments() {
 	return $res;
 }
 
+function optons_positions() {
+	$res = '';
+	foreach (getdb("positions") as $val) {
+		$res .= '<option value="' . $val['id'] . '" name="position">' . $val['position'] . '</option>';
+	}
+	return $res;
+}
+
 function optons_peoples() {
 	$res = '';
 	foreach (getdb("all_peoples") as $val) {
@@ -57,14 +74,6 @@ function optons_objects() {
 	$res = '';
 	foreach (getdb("objects") as $val) {
 		$res .= '<option value="' . $val['id'] . '" name="object">' . $val['object'] . '</option>';
-	}
-	return $res;
-}
-
-function optons_objects() {
-	$res = '';
-	foreach (getdb("objects") as $val) {
-		$res .= '<option style="color:black" value="' . $val['id'] . '" name="object">' . $val['object'] . '</option>';
 	}
 	return $res;
 }

@@ -2,29 +2,29 @@
 	$( document ).ready(function() {
 		showDepartment(0);
 	});
+	
 	function showDepartment(department) {
 		$("#people option").hide();
-		// $("#people").removeClass('active').prop('selectedIndex',0);
 		$("#people").prop('selectedIndex',0);
 		$("#people option[otdel=" + department + "]").show();
 	}
 </script>
 
-<form action="/addmission" method="post" id="addmission" name="addmission">
-	<select name="department" id="department" required="" onchange="showDepartment(this.value)">
-		<option disabled="" selected="" hidden="" value="">Отдел</option>
+<form action="" method="post" id="addmission" name="addmission">
+	<select name="department" id="department" required onchange="showDepartment(this.value)">
+		<option disabled selected value="">Отдел</option>
 		{OPTIONS_DEPARTMENTS}
 	</select><br />
-	<select name="people" id="people" required="">
-		<option disabled="" selected="" hidden="" value="">Ф.И.О.</option>
+	<select name="people" id="people" required>
+		<option disabled selected value="">Ф.И.О.</option>
 		{OPTIONS_PEOPLES}
 	</select><br />
-	<select name="type" id="type" required="">
-		<option disabled="" selected="" hidden="" value="">тип события</option>
+	<select name="type" id="type" required>
+		<option disabled selected value="">тип события</option>
 		{OPTIONS_TYPES}
 	</select><br />
-	<select name="obj" required="">
-		<option disabled="" selected="" hidden="" value="">объект</option>
+	<select name="obj">
+		<option disabled selected value="">объект</option>
 		{OPTIONS_OBJ}
 	</select>&nbsp;<a href="/">редактировать</a><br />
 	Дата начала:<br />
