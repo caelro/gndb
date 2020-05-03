@@ -12,6 +12,9 @@ function setdb($args) {
 			VALUES(%s, %s, '%s', '%s', %s)", $_POST['people'], $_POST['type'], $_POST['bdate'], $_POST['edate'], $_POST['obj']);
 		$db->query($res);
 	}
+	if ($args['addpeople']) {
+		
+	}
 }
 
 // function getmissions() {
