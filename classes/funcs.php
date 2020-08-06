@@ -7,13 +7,22 @@ function getdb($view) {
 
 function setdb($args) {
 	$db = new sqlite('db.sqlite');
-	if ($args['addmission']) {
-		$res = sprintf("INSERT INTO missions ('peopleid', 'typeid', 'begin', 'end', 'objectid') 
-			VALUES(%s, %s, '%s', '%s', %s)", $_POST['people'], $_POST['type'], $_POST['bdate'], $_POST['edate'], $_POST['obj']);
+	if ($_POST['addmission']) {
+		$res = sprintf("INSERT INTO missions ('peopleid', 'typeid', 'begin', 'end', 'objectid', 'viewid', 'num', 'autoid') 
+			VALUES(%s, %s, '%s', '%s', %s, %s, '%s', %s)",
+			$db->clean($_POST['people']),
+			$db->clean($_POST['type']),
+			$db->clean($_POST['bdate']),
+			$db->clean($_POST['edate']),
+			is_null($_POST['obj']) ? 'NULL' : $db->clean($_POST['obj']),
+			$db->clean($_POST['view']),
+			is_null($_POST['num']) ? '' : $db->clean($_POST['num']),
+			is_null($_POST['auto']) ? 'NULL' : $db->clean($_POST['auto'])
+		);
 		$db->query($res);
 	}
 	if ($args['addpeople']) {
-		
+
 	}
 }
 
@@ -27,19 +36,20 @@ function setdb($args) {
 // 		");
 // }
 
-// function showpeoples() {
-// 	$res = '';
-// 	foreach (getpeoples() as $val) {
-// 		$res .= '<tr>' .
-// 					'<td><a href="#">' . $val['lname'] . ' ' . $val['fname'] . ' ' . $val['mname'] . '</a></td>' .
-// 					'<td>' . $val['position'] . '</td>' .
-// 					'<td><a href="/#">delete</a></td>' .
-// 				'</tr>';
-// 	}
-// 	$res = '<tr><td colspan="3" align="center">' . $val['department'] . '</td></tr>' . $res;
-// 	$res = '<table>' . $res . '</table>';
-// 	return $res;
-// }
+function showpeoples() {
+	$res = '';
+	foreach (getdb('all_peoples') as $val) {
+		$res .= '<tr>' .
+		'<td><a href="#">' . $val['lastname'] . ' ' . $val['firstname'] . ' ' . $val['middlename'] . '</a></td>' .
+		'<td>' . $val['department'] . '</td>' .
+		'<td>' . $val['position'] . '</td>' .
+		'<td><a href="/#">редактировать</a></td>' .
+		'</tr>';
+	}
+	// $res = '<tr><td colspan="3" align="center">' . $val['department'] . '</td></tr>' . $res;
+	$res = '<table>' . $res . '</table>';
+	return $res;
+}
 
 function optons_departments() {
 	$res = '';
@@ -77,6 +87,22 @@ function optons_objects() {
 	$res = '';
 	foreach (getdb("objects") as $val) {
 		$res .= '<option value="' . $val['id'] . '" name="object">' . $val['object'] . '</option>';
+	}
+	return $res;
+}
+
+function optons_views() {
+	$res = '';
+	foreach (getdb("views") as $val) {
+		$res .= '<option value="' . $val['id'] . '" name="view">' . $val['view'] . '</option>';
+	}
+	return $res;
+}
+
+function optons_autos() {
+	$res = '';
+	foreach (getdb("autos") as $val) {
+		$res .= '<option value="' . $val['id'] . '" name="auto">' . $val['autotype'] . ' (' . $val['autonum'] . ')' . '</option>';
 	}
 	return $res;
 }

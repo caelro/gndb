@@ -1,7 +1,14 @@
+<script>
+	$( document ).ready(function() {
+		document.getElementById('lname').value = "Tsybulin";
+		$('#fname').val('Alexander');
+	});
+</script>
+
 <form action="" method="post">
-	<input type="text" name="lname" placeholder="Фамилия" required><br />
-	<input type="text" name="fname" placeholder="Имя"><br />
-	<input type="text" name="mname" placeholder="Отчество"><br />
+	<input type="text" id="lname" name="lname" placeholder="Фамилия" required value=""><br />
+	<input type="text" id="fname" name="fname" placeholder="Имя" required><br />
+	<input type="text" id="mname" name="mname" placeholder="Отчество" required><br />
 	<select name="sex" required>
 		<option disabled selected value="">Пол</option>
 		<option value="1">Мужской</option>
@@ -19,4 +26,5 @@
 		{OPTIONS_POSITIONS}
 	</select><br />
 	<input type="submit" name="addpeople" value="Добавить сотрудника">
+	<input type="submit" name="updatepeople" value="Редактировать сотрудника" hidden>
 </form>

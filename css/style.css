@@ -50,7 +50,7 @@ hr {
 
 table {
   border-collapse: collapse;
-  text-align: center;
+  text-align: justify;
 }
 
 th{
@@ -64,7 +64,7 @@ td, th {
 }
 
 :required {
-  border: 1px solid red
+  border: 1px solid blue
 }
 
 select {

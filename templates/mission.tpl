@@ -23,14 +23,22 @@
 		<option disabled selected value="">тип события</option>
 		{OPTIONS_TYPES}
 	</select><br />
+	Дата начала:<br />
+	<input type="date" name="bdate" required><br />
+	Дата окончания:<br />
+	<input type="date" name="edate" required><br />
+	<select name="view" required>
+		<option disabled selected value="">вид события</option>
+		{OPTIONS_VIEW}
+	</select><br />
+	<input type="text" name="num" placeholder="Номер приказа"><br />
 	<select name="obj">
-		<option disabled selected value="">объект</option>
+		<option disabled selected value="">направление</option>
 		{OPTIONS_OBJ}
 	</select>&nbsp;<a href="/">редактировать</a><br />
-	Дата начала:<br />
-	<input type="date" name="bdate" required=""><br />
-	Дата окончания:<br />
-	<input type="date" name="edate" required=""><br />
-	<input type="text" name="num" placeholder="Номер приказа"><br />
+	<select name="auto">
+		<option disabled selected value="">автомобиль (выбирается для водителя)</option>
+		{OPTIONS_AUTO}
+	</select><br />
 	<input type="submit" name="addmission" value="Отправить">
 </form>
