@@ -1,3 +1,6 @@
+<div class="centered"><a href="/mission/add">Добавить коммандировку</a></div>
+<div class="centered"><a href="/mission/add">Добавить больничный</a></div>
+<hr>
 <div><a href="/peoples">Сотрудники</a> <a href="/addpeople">(добавить)</a></div>
 <div><a href="/missions">Приказы</a> <a href="/addmission">(добавить)</a></div>
 <hr>

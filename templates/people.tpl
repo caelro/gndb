@@ -1,14 +1,14 @@
 <script>
-	$( document ).ready(function() {
-		document.getElementById('lname').value = "Tsybulin";
-		$('#fname').val('Alexander');
-	});
+//	$( document ).ready(function() {
+//		document.getElementById('lname').value = "Tsybulin";
+//		$('#fname').val('Alexander');
+//	});
 </script>
 
 <form action="" method="post">
-	<input type="text" id="lname" name="lname" placeholder="Фамилия" required value=""><br />
-	<input type="text" id="fname" name="fname" placeholder="Имя" required><br />
-	<input type="text" id="mname" name="mname" placeholder="Отчество" required><br />
+	<input type="text" id="lname" name="lname" placeholder="Фамилия" required value="{VAL_LNAME}"><br />
+	<input type="text" id="fname" name="fname" placeholder="Имя" required value="{VAL_FNAME}"><br />
+	<input type="text" id="mname" name="mname" placeholder="Отчество" required value="{VAL_MNAME}"><br />
 	<select name="sex" required>
 		<option disabled selected value="">Пол</option>
 		<option value="1">Мужской</option>

@@ -40,10 +40,10 @@ function showpeoples() {
 	$res = '';
 	foreach (getdb('all_peoples') as $val) {
 		$res .= '<tr>' .
-		'<td><a href="#">' . $val['lastname'] . ' ' . $val['firstname'] . ' ' . $val['middlename'] . '</a></td>' .
+		'<td><a href="/people/edit/' . $val['id'] . '">' . $val['lastname'] . ' ' . $val['firstname'] . ' ' . $val['middlename'] . '</a></td>' .
 		'<td>' . $val['department'] . '</td>' .
 		'<td>' . $val['position'] . '</td>' .
-		'<td><a href="/#">редактировать</a></td>' .
+		// '<td><a href="/people/edit/' . $val['id'] . '">редактировать</a></td>' .
 		'</tr>';
 	}
 	// $res = '<tr><td colspan="3" align="center">' . $val['department'] . '</td></tr>' . $res;

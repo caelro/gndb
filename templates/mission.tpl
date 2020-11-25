@@ -25,6 +25,7 @@
 	</select><br />
 	Дата начала:<br />
 	<input type="date" name="bdate" required><br />
+	<input type="checkbox" name="less"><label>Продолжается</label><br />
 	Дата окончания:<br />
 	<input type="date" name="edate" required><br />
 	<select name="view" required>
