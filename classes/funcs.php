@@ -5,19 +5,21 @@ function getdb($view) {
 	return $db->queryAll("SELECT * FROM " . $view);
 }
 
-function setdb($args) {
+function insert_order($args) {
 	$db = new sqlite('db.sqlite');
-	if ($_POST['addmission']) {
-		$res = sprintf("INSERT INTO missions ('peopleid', 'typeid', 'begin', 'end', 'objectid', 'viewid', 'num', 'autoid') 
-			VALUES(%s, %s, '%s', '%s', %s, %s, '%s', %s)",
-			$db->clean($_POST['people']),
-			$db->clean($_POST['type']),
-			$db->clean($_POST['bdate']),
-			$db->clean($_POST['edate']),
-			is_null($_POST['obj']) ? 'NULL' : $db->clean($_POST['obj']),
-			$db->clean($_POST['view']),
-			is_null($_POST['num']) ? '' : $db->clean($_POST['num']),
-			is_null($_POST['auto']) ? 'NULL' : $db->clean($_POST['auto'])
+	if ($args['addmission']) {
+		$res = sprintf("INSERT INTO orders ('peopleid', 'typeid', 'bdate', 'edate', 'object', 'numorder', 'autoid', 'SZsend', 'AOsend', 'AOreceive') 
+			VALUES(%s, %s, '%s', '%s', '%s', '%s', '%s', %d, %d, %d)",
+			$db->clean($args['people']),
+			$db->clean($args['type']),
+			$db->clean($args['bdate']),
+			isset($args['edate']) ? $db->clean($args['edate']) : NULL,
+			isset($args['obj']) ? $db->clean($args['obj']) : NULL,
+			isset($args['num']) ? $db->clean($args['num']) : NULL,
+			isset($args['auto']) ? $db->clean($args['auto']) : NULL,
+			$db->clean($args['SZsend']),
+			$db->clean($args['AOsend']),
+			$db->clean($args['AOreceive'])
 		);
 		$db->query($res);
 	}
@@ -37,86 +39,42 @@ function setdb($args) {
 // }
 
 function showpeoples() {
-	$res = '';
+	$res = '<tr><th>#</th><th>Ф.И.О.</th><th>Отдел</th><th>Должность</th></tr>';
+	$num = 1;
 	foreach (getdb('all_peoples') as $val) {
 		$res .= '<tr>' .
-		'<td><a href="/people/edit/' . $val['id'] . '">' . $val['lastname'] . ' ' . $val['firstname'] . ' ' . $val['middlename'] . '</a></td>' .
+		'<td>' . $num++ . '</td>' .
+		'<td><a href="/people/edit/' . $val['id'] . '">' . $val['fullname'] . '</a></td>' .
 		'<td>' . $val['department'] . '</td>' .
 		'<td>' . $val['position'] . '</td>' .
 		// '<td><a href="/people/edit/' . $val['id'] . '">редактировать</a></td>' .
 		'</tr>';
 	}
 	// $res = '<tr><td colspan="3" align="center">' . $val['department'] . '</td></tr>' . $res;
-	$res = '<table>' . $res . '</table>';
+	$res = '<table class="table_blur">' . $res . '</table>';
 	return $res;
 }
 
-function optons_departments() {
+function get_optons($db, $name, $addin = NULL) {
 	$res = '';
-	foreach (getdb("departments") as $val) {
-		$res .= '<option value="' . $val['id'] . '" name="department">' . $val['department'] . '</option>';
+	foreach (getdb($db) as $val) {
+		$res .= '<option value="' . $val['id'] . '" name="' . $name[0] . (isset($addin) ? '" ' . $addin[0] . '="' . $val[$addin[1]] : '') . '" {VAL_' . $name[0] . '_' . $val['id'] . '}>' . $val[$name[1]] . '</option>';
 	}
 	return $res;
 }
 
-function optons_positions() {
-	$res = '';
-	foreach (getdb("positions") as $val) {
-		$res .= '<option value="' . $val['id'] . '" name="position">' . $val['position'] . '</option>';
+function showorders() {
+	$res = '<tr><th>#</th><th>Ф.И.О.</th><th>Отдел</th><th>Тип</th><th>Период</th></tr>';
+	$num = 1;
+	foreach (getdb('all_orders_2021') as $val) {
+		$res .= '<tr>' .
+		'<td>' . $num++ . '</td>' .
+		'<td>' . $val['fullname'] . '</td>' .
+		'<td>' . $val['department'] . '</td>' .
+		'<td>' . $val['type'] . '</td>' .
+		'<td> с ' . date("d.m.Y", strtotime($val['bdate'])) . ' по ' . ($val['edate'] != '' ? date("d.m.Y", strtotime($val['edate'])) : 'Н.В.') . '</td>' .
+		'</tr>';
 	}
+	$res = '<table class="table_blur">' . $res . '</table>';
 	return $res;
 }
-
-function optons_peoples() {
-	$res = '';
-	foreach (getdb("all_peoples") as $val) {
-		$res .= '<option value="' . $val['id'] . '" name="people" otdel="' . $val['departmentid'] . '">' . $val['lastname'] . ' ' . $val['firstname'] . ' ' . $val['middlename'] . '</option>';
-	}
-	return $res;
-}
-
-function optons_types() {
-	$res = '';
-	foreach (getdb("mission_types") as $val) {
-		$res .= '<option value="' . $val['id'] . '" name="type">' . $val['type'] . '</option>';
-	}
-	return $res;
-}
-
-function optons_objects() {
-	$res = '';
-	foreach (getdb("objects") as $val) {
-		$res .= '<option value="' . $val['id'] . '" name="object">' . $val['object'] . '</option>';
-	}
-	return $res;
-}
-
-function optons_views() {
-	$res = '';
-	foreach (getdb("views") as $val) {
-		$res .= '<option value="' . $val['id'] . '" name="view">' . $val['view'] . '</option>';
-	}
-	return $res;
-}
-
-function optons_autos() {
-	$res = '';
-	foreach (getdb("autos") as $val) {
-		$res .= '<option value="' . $val['id'] . '" name="auto">' . $val['autotype'] . ' (' . $val['autonum'] . ')' . '</option>';
-	}
-	return $res;
-}
-
-// function showmissions() {
-// 	$res = '';
-// 	foreach (getmissions() as $val) {
-// 		$res .= $val['lname'] . ' ' 
-// 			. $val['fname'] . ' ' 
-// 			. $val['object'] . ' '
-// 			. $val['place'] . ' ' 
-// 			. 'с ' . $val['begin'] . ' ' 
-// 			. 'по ' . $val['end'] . ' ' 
-// 			. '<br />';
-// 	}
-// 	return $res;
-// }

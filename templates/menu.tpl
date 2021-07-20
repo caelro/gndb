@@ -1,8 +1,13 @@
+<div class="centered"><a href="/orders">Приказы</a> <a href="/order/add">(добавить)</a></div>
+<!-- <div class="centered"><a href="/missions">Приказы</a> <a href="/addmission">(добавить)</a></div> -->
+<hr>
+<div class="centered"><a href="/peoples">Сотрудники</a></div>
+<!-- <div class="centered"><a href="/objects">Направления</a></div> -->
+<div class="centered"><a href="/autos">Автомобили</a></div>
+<!--
+<hr>
 <div class="centered"><a href="/mission/add">Добавить коммандировку</a></div>
 <div class="centered"><a href="/mission/add">Добавить больничный</a></div>
-<hr>
-<div><a href="/peoples">Сотрудники</a> <a href="/addpeople">(добавить)</a></div>
-<div><a href="/missions">Приказы</a> <a href="/addmission">(добавить)</a></div>
 <hr>
 <div class="centered">ОТЧЕТ
 	<form action="/" method="post">
@@ -23,3 +28,4 @@
 		<input type="submit" name="report" value="Отправить">
 	</form>
 </div>
+-->

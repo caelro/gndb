@@ -27,7 +27,7 @@ if($_POST) {
     else {
         if($_POST["addmission"]) {
             // add mission in DB
-            setdb($_POST);
+            insert_order($_POST);
             header("Location: " . $_SERVER['REQUEST_URI']);
             exit;
         }
@@ -39,34 +39,67 @@ $main->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "main.tpl");
 
 $menu = new template;
 $menu->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "menu.tpl");
-$menu->set_tpl('{OPTIONS_DEPARTMENTS}', optons_departments());
+// $menu->set_tpl('{OPTIONS_DEPARTMENTS}', optons_departments());
 $menu->tpl_parse();
 
 $content = new template;
-$content->set_tpl('{OPTIONS_DEPARTMENTS}', optons_departments());
-$content->set_tpl('{OPTIONS_POSITIONS}', optons_positions());
+$content->set_tpl('{OPTIONS_DEPARTMENTS}', get_optons('departments', array('department', 'department')));
+$content->set_tpl('{OPTIONS_POSITIONS}', get_optons('positions', array('position', 'position')));
 switch ($url[0]) {
 	case 'peoples':
 	    $content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "content.tpl");
 	    $content->set_tpl('{CONT_HEAD}', 'Список сотрудников:');
 		$content->set_tpl('{CONT_BODY}', showpeoples());
 	break;
-	case 'addpeople':
-	    $content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "people.tpl");
+	case 'people':
+		switch ($url[1]) {
+			case 'add':
+				// Add new man
+				$content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "people.tpl");
+				$content->set_tpl('{HIDDEN_2}', "hidden");
+				break;
+			case 'edit':
+				// edit selected man
+				$content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "people.tpl");
+				$content->set_tpl('{VAL_LNAME}', 'value="Tsybulin"');
+				$content->set_tpl('{VAL_FNAME}', 'value="Alex"');
+				$content->set_tpl('{VAL_MNAME}', "");
+				$content->set_tpl('{VAL_SEX_1}', "selected");
+				$content->set_tpl('{VAL_BDAY}', 'value="1981-04-09"');
+				$content->set_tpl('{VAL_department_3}', "selected");
+				$content->set_tpl('{VAL_position_3}', "selected");
+				$content->set_tpl('{HIDDEN_1}', "hidden");
+				break;
+
+			default:
+				# code...
+				header("Location: " . $_SERVER['REQUEST_URI'] . "/add/");
+				break;
+		}
 	break;
-	case 'missions':
+	case 'orders':
         $content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "content.tpl");
-        $content->set_tpl('{CONT_HEAD}', 'Список миссий:');
-		// $content->set_tpl('{CONT_BODY}', showmissions());
+        $content->set_tpl('{CONT_HEAD}', 'Список событий:');
+		$content->set_tpl('{CONT_BODY}', showorders());
 	break;
-	case 'addmission':
-        $content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "mission.tpl");
-		// $content->set_tpl('{OPTIONS_DEPARTMENTS}', optons_departments());
-        $content->set_tpl('{OPTIONS_PEOPLES}', optons_peoples());
-        $content->set_tpl('{OPTIONS_TYPES}', optons_types());
-        $content->set_tpl('{OPTIONS_OBJ}', optons_objects());
-        $content->set_tpl('{OPTIONS_VIEW}', optons_views());
-        $content->set_tpl('{OPTIONS_AUTO}', optons_autos());
+	case 'order':
+		switch ($url[1]) {
+			case 'add':
+		        $content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "mission.tpl");
+				// $content->set_tpl('{OPTIONS_DEPARTMENTS}', get_optons('departments', array('department', 'department')));
+		        $content->set_tpl('{OPTIONS_PEOPLES}', get_optons('all_peoples', array('people', 'fullname'), array('otdel','departmentid')));
+		        $content->set_tpl('{OPTIONS_TYPES}', get_optons('all_types', array('type', 'type')));
+		        $content->set_tpl('{OPTIONS_OBJ}', get_optons('objects', array('object', 'object')));
+		        // $content->set_tpl('{OPTIONS_VIEW}', get_optons('views', 'view'));
+		        $content->set_tpl('{OPTIONS_AUTO}', get_optons('all_autos', array('auto', 'auto')));
+				break;
+			case 'edit':
+				break;
+
+			default:
+				# code...
+				break;
+		}
 	break;
 	case 'report':
         $content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "report.tpl");
