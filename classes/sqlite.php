@@ -9,7 +9,6 @@ class sqlite
     {
         $this->mode = $mode;
         $this->sqlite = new SQLite3($filename);
-
     }
 
     function __destruct()
