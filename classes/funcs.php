@@ -8,7 +8,7 @@ function getdb($view) {
 function insert_order($args) {
 	$db = new sqlite('db.sqlite');
 	if ($args['addmission']) {
-		$res = sprintf("INSERT INTO orders ('peopleid', 'typeid', 'bdate', 'edate', 'object', 'numorder', 'autoid', 'SZsend', 'AOsend', 'AOreceive') 
+		$res = sprintf("INSERT INTO orders ('peopleid', 'typeid', 'bdate', 'edate', 'object', 'numorder', 'autoid', 'SZsend', 'AOsend', 'AOreceive')
 			VALUES(%s, %s, '%s', '%s', '%s', '%s', '%s', %d, %d, %d)",
 			$db->clean($args['people']),
 			$db->clean($args['type']),
@@ -39,7 +39,7 @@ function insert_order($args) {
 // }
 
 function showpeoples() {
-	$res = '<tr><th>#</th><th>Ф.И.О.</th><th>Отдел</th><th>Должность</th></tr>';
+	$res = '<tr><th>#</th><th>Ф.И.О.</th><th>Отдел</th><th>Должность</th><th>Действие</th></tr>';
 	$num = 1;
 	foreach (getdb('all_peoples') as $val) {
 		$res .= '<tr>' .
@@ -47,7 +47,7 @@ function showpeoples() {
 		'<td><a href="/people/edit/' . $val['id'] . '">' . $val['fullname'] . '</a></td>' .
 		'<td>' . $val['department'] . '</td>' .
 		'<td>' . $val['position'] . '</td>' .
-		// '<td><a href="/people/edit/' . $val['id'] . '">редактировать</a></td>' .
+		'<td><a href="/people/del/' . $val['id'] . '">удалить</a></td>' .
 		'</tr>';
 	}
 	// $res = '<tr><td colspan="3" align="center">' . $val['department'] . '</td></tr>' . $res;
@@ -78,3 +78,26 @@ function showorders() {
 	$res = '<table class="table_blur">' . $res . '</table>';
 	return $res;
 }
+
+function make_menu($url) {
+	function make_link($link,$name) {
+		return '<div class="centered"><a href="' . $link . '">' . $name . '</a></div>';
+	}
+
+	$res = '';
+	switch ($url) {
+		case 'people':
+			$res .= make_link('/people/add','Добавить');
+			$res .= '<hr />';
+			$res .= make_link('/','На главную');
+			break;
+
+		default:
+			$res .= make_link('/order','Приказы');
+			$res .= make_link('/people','Сотрудники');
+			break;
+	}
+	return $res;
+}
+
+?>

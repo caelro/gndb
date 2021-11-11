@@ -3,19 +3,19 @@
 <head>
 	<meta charset="utf-8">
 	<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-	<title>{TITLE}</title>
+	<title><?=$title;?></title>
 	<!-- <link rel="stylesheet" href="../css/bootstrap.css"/> -->
 	<!-- <link rel="stylesheet" href="../css/font-awesome.min.css"> -->
-	<link rel="stylesheet" href="{ROOT}css/style.css"/>
-	<script src="{ROOT}js/jquery-3.4.1.min.js"></script>
+	<link rel="stylesheet" href="<?=$root;?>css/style.css"/>
+	<script src="<?=$root;?>js/jquery-3.4.1.min.js"></script>
 </head>
 <body>
 	<div class="container">
 				<div class="menu">
-					{MENU}
+					<?=$menu;?>
 				</div>
 				<div class="content">
-					{CONTENT}
+					<?=$cont;?>
 				</div>
 	</div>
 	<!-- <script src="../js/bootstrap.min.js"></script> -->
