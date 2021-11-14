@@ -97,7 +97,7 @@ switch ($url[1]) {
 	// break;
 	default:
   	// $content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "content.tpl");
-		$cont='ЗДРАВСТВУЙТЕ!<br>Выбирайте необходимый параметр из меню слева <---.';
+		$cont='<h1>ЗДРАВСТВУЙТЕ!<br>Выбирайте необходимый параметр из меню слева<br><---</h1>';
 		break;
 }
 $content->tpl_parse();

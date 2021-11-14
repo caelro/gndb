@@ -1,5 +1,27 @@
 <?php
 
+function gettable($name) {
+	$db = new sqlite('db.sqlite');
+	return $db->queryAll('select * from ' . $name);
+}
+
+function showpeoples() {
+	$res = '<tr><th>#</th><th>Ф.И.О.</th><th>Должность</th><th>Отдел</th><th>Действие</th></tr>';
+	$num = 1;
+	foreach (gettable('all_peoples') as $val) {
+		$res .= '<tr>' .
+		'<td>' . $num++ . '</td>' .
+		'<td><a href="/people/edit/' . $val['id'] . '">' . $val['fullname'] . '</a></td>' .
+		'<td>' . $val['position'] . '</td>' .
+		'<td>' . $val['department'] . '</td>' .
+		'<td><a href="/people/del/' . $val['id'] . '">удалить</a></td>' .
+		'</tr>';
+	}
+	// $res = '<tr><td colspan="3" align="center">' . $val['department'] . '</td></tr>' . $res;
+	$res = '<table class="table_blur">' . $res . '</table>';
+	return $res;
+}
+
 function getdb($view) {
 	$db = new sqlite('db.sqlite');
 	return $db->queryAll("SELECT * FROM " . $view);
@@ -37,23 +59,6 @@ function insert_order($args) {
 // 		JOIN objects ON objects.id = missions.object
 // 		");
 // }
-
-function showpeoples() {
-	$res = '<tr><th>#</th><th>Ф.И.О.</th><th>Отдел</th><th>Должность</th><th>Действие</th></tr>';
-	$num = 1;
-	foreach (getdb('all_peoples') as $val) {
-		$res .= '<tr>' .
-		'<td>' . $num++ . '</td>' .
-		'<td><a href="/people/edit/' . $val['id'] . '">' . $val['fullname'] . '</a></td>' .
-		'<td>' . $val['department'] . '</td>' .
-		'<td>' . $val['position'] . '</td>' .
-		'<td><a href="/people/del/' . $val['id'] . '">удалить</a></td>' .
-		'</tr>';
-	}
-	// $res = '<tr><td colspan="3" align="center">' . $val['department'] . '</td></tr>' . $res;
-	$res = '<table class="table_blur">' . $res . '</table>';
-	return $res;
-}
 
 function get_optons($db, $name, $addin = NULL) {
 	$res = '';
