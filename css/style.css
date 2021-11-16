@@ -63,8 +63,8 @@ table {
   text-align: left;
 }
 .table_blur th {
-  border-top: 1px solid #777777;  
-  border-bottom: 1px solid #777777; 
+  border-top: 1px solid #777777;
+  border-bottom: 1px solid #777777;
   box-shadow: inset 0 1px 0 #999999, inset 0 -1px 0 #999999;
   background: linear-gradient(#9595b6, #5a567f);
   color: white;
@@ -86,7 +86,7 @@ table {
   background: #ebf3f9;
 }
 .table_blur th:first-child {
-  border-left: 1px solid #777777; 
+  border-left: 1px solid #777777;
   border-bottom:  1px solid #777777;
   box-shadow: inset 1px 1px 0 #999999, inset 0 -1px 0 #999999;
 }
@@ -99,15 +99,15 @@ table {
   border: 1px solid #e3eef7;
   padding: 10px 15px;
   position: relative;
-  transition: all 0.5s ease;
+  /* transition: all 0.5s ease; */
 }
 .table_blur tbody:hover td {
-  color: transparent;
-  text-shadow: 0 0 3px #a09f9d;
+  /* color: transparent; */
+  /* text-shadow: 0 0 3px #a09f9d; */
 }
 .table_blur tbody:hover tr:hover td {
   color: #444444;
-  text-shadow: none;
+  /* text-shadow: none; */
 }
 
 .table_dark {

@@ -77,7 +77,8 @@ switch ($url[1]) {
 			case 'add':
         $content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "mission.tpl");
 				// $content->set_tpl('{OPTIONS_DEPARTMENTS}', get_optons('departments', array('department', 'department')));
-        $content->set_tpl('{OPTIONS_PEOPLES}', get_optons('all_peoples', array('people', 'fullname'), array('otdel','departmentid')));
+        // $content->set_tpl('{OPTIONS_PEOPLES}', get_optons('all_peoples', array('people', 'fullname'), array('otdel','departmentid')));
+        $content->set_tpl('{OPTIONS_PEOPLES}', get_options('all_peoples', 'fullname', array('otdel'=>'departmentid')));
         $content->set_tpl('{OPTIONS_TYPES}', get_optons('all_types', array('type', 'type')));
         $content->set_tpl('{OPTIONS_OBJ}', get_optons('objects', array('object', 'object')));
         // $content->set_tpl('{OPTIONS_VIEW}', get_optons('views', 'view'));
