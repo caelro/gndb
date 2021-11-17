@@ -6,11 +6,12 @@
 </script>
 
 <form action="" method="post">
-	<input type="text" id="lname" name="lname" placeholder="Фамилия" required {VAL_LNAME}><br />
+	<input type="text" id="lname" name="lname" placeholder="Фамилия" required value="<?=$val_lname;?>"><br />
 	<input type="text" id="fname" name="fname" placeholder="Имя" required {VAL_FNAME}><br />
 	<input type="text" id="mname" name="mname" placeholder="Отчество" required {VAL_MNAME}><br />
 	<select name="sex" required>
 		<option disabled selected value="">Пол</option>
+		{OPTIONS_SEX}
 		<option {VAL_SEX_1} value="1">Мужской</option>
 		<option {VAL_SEX_2} value="2">Женский</option>
 	</select><br />

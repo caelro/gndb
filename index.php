@@ -16,7 +16,6 @@ function getURL() {
 	return $res;
 }
 
-$url = getURL();
 
 // if($_POST) {
 //     if($_POST['report'])
@@ -39,56 +38,59 @@ $url = getURL();
 // $menu->set_tpl('{OPTIONS_DEPARTMENTS}', optons_departments());
 // $menu->tpl_parse();
 
-$content = new template;
-$content->set_tpl('{OPTIONS_DEPARTMENTS}', get_optons('departments', array('department', 'department')));
-$content->set_tpl('{OPTIONS_POSITIONS}', get_optons('positions', array('position', 'position')));
+$url = getURL();
+$content = new template('templates/people.tpl');
+// $content = new template;
+// $content->set_tpl('{OPTIONS_DEPARTMENTS}', get_optons('departments', array('department', 'department')));
+// $content->set_tpl('{OPTIONS_POSITIONS}', get_optons('positions', array('position', 'position')));
 switch ($url[1]) {
 	case 'people':
-		$content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "content.tpl");
-		$content->set_tpl('{CONT_HEAD}', 'Список сотрудников:');
+		// $content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "content.tpl");
+		// $content->set_tpl('{CONT_HEAD}', 'Список сотрудников:');
 		switch ($url[2]) {
 			case 'add':
 				// Add new man
-				$content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "people.tpl");
-				$content->set_tpl('{HIDDEN_2}', "hidden");
+				// $content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "people.tpl");
+				// $content->set_tpl('{HIDDEN_2}', "hidden");
 				break;
 			case 'edit':
 				// edit selected man
-				$content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "people.tpl");
-				$content->set_tpl('{VAL_LNAME}', 'value="Tsybulin"');
-				$content->set_tpl('{VAL_FNAME}', 'value="Alex"');
-				$content->set_tpl('{VAL_MNAME}', "");
-				$content->set_tpl('{VAL_SEX_1}', "selected");
-				$content->set_tpl('{VAL_BDAY}', 'value="1981-04-09"');
-				$content->set_tpl('{VAL_department_3}', "selected");
-				$content->set_tpl('{VAL_position_3}', "selected");
-				$content->set_tpl('{HIDDEN_1}', "hidden");
+				// $content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "people.tpl");
+				// $content->set_tpl('{VAL_LNAME}', 'value="Tsybulin"');
+				$content->val_lname="Tsybulin";
+				// $content->set_tpl('{VAL_FNAME}', 'value="Alex"');
+				// $content->set_tpl('{VAL_MNAME}', "");
+				// $content->set_tpl('{VAL_SEX_1}', "selected");
+				// $content->set_tpl('{VAL_BDAY}', 'value="1981-04-09"');
+				// $content->set_tpl('{VAL_department_3}', "selected");
+				// $content->set_tpl('{VAL_position_3}', "selected");
+				// $content->set_tpl('{HIDDEN_1}', "hidden");
 				break;
 			default:
-				$content->set_tpl('{CONT_BODY}', showpeoples());
+				// $content->set_tpl('{CONT_BODY}', show_peoples());
 				// header("Location: " . $_SERVER['REQUEST_URI'] . "/add/");
 				break;
 		}
 		break;
 	case 'order':
-  	$content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "content.tpl");
-    $content->set_tpl('{CONT_HEAD}', 'Список событий:');
+  	// $content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "content.tpl");
+    // $content->set_tpl('{CONT_HEAD}', 'Список событий:');
 		switch ($url[2]) {
 			case 'add':
-        $content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "mission.tpl");
+        // $content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "mission.tpl");
 				// $content->set_tpl('{OPTIONS_DEPARTMENTS}', get_optons('departments', array('department', 'department')));
         // $content->set_tpl('{OPTIONS_PEOPLES}', get_optons('all_peoples', array('people', 'fullname'), array('otdel','departmentid')));
-        $content->set_tpl('{OPTIONS_PEOPLES}', get_options('all_peoples', 'fullname', array('otdel'=>'departmentid')));
-        $content->set_tpl('{OPTIONS_TYPES}', get_optons('all_types', array('type', 'type')));
-        $content->set_tpl('{OPTIONS_OBJ}', get_optons('objects', array('object', 'object')));
+        // $content->set_tpl('{OPTIONS_PEOPLES}', get_options('all_peoples', 'fullname', 0, array('otdel'=>'departmentid')));
+        // $content->set_tpl('{OPTIONS_TYPES}', get_options('all_types', 'type', 0));
+        // $content->set_tpl('{OPTIONS_OBJ}', get_optons('objects', array('object', 'object')));
         // $content->set_tpl('{OPTIONS_VIEW}', get_optons('views', 'view'));
-        $content->set_tpl('{OPTIONS_AUTO}', get_optons('all_autos', array('auto', 'auto')));
+        // $content->set_tpl('{OPTIONS_AUTO}', get_optons('all_autos', array('auto', 'auto')));
 				break;
 			case 'edit':
 				break;
 
 			default:
-				$content->set_tpl('{CONT_BODY}', showorders());
+				// $content->set_tpl('{CONT_BODY}', show_orders());
 				# code...
 				break;
 		}
@@ -101,11 +103,12 @@ switch ($url[1]) {
 		$cont='<h1>ЗДРАВСТВУЙТЕ!<br>Выбирайте необходимый параметр из меню слева<br><---</h1>';
 		break;
 }
-$content->tpl_parse();
+// $content->tpl_parse();
 
 $title='ООО "Газпром газнадзор" Волгоградский филиал';
 $root=ROOT;
 // $menu=$menu->template;
 $menu=make_menu($url[1]);
-$cont=$content->template;
+// $cont=$content->template;
+$cont = $content;
 include 'templates/main.tpl';

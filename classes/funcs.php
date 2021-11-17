@@ -38,7 +38,7 @@ function show_orders() {
 	return $res;
 }
 
-function get_options($table, $value, $params = NULL) {
+function get_options($table, $value, $sel, $params = NULL) {
 	$res = '';
 	foreach (get_table($table) as $t_val) {
 		$res .= '<option ';

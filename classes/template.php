@@ -1,28 +1,46 @@
 <?php
+/*
+*  Template Class
+*  Creates a template/view object
+*/
+class template {
+  //Path to template
+  protected $template;
+  //Variables
+  protected $vars = array();
 
-class template
-{
-    var $vars = array();
-    var $template;
+  /*
+  * Class Constructor
+  */
+  public function __construct($template){
+    $this->template = $template;
+  }
 
-    function get_tpl($tpl_name)
-    {
-        if (empty($tpl_name) || !file_exists($tpl_name)) {
-            return false;
-        } else {
-            $this->template = file_get_contents($tpl_name);
-        }
-    }
+  /* __get() and __set() are run when writing data to inaccessible properties.
+  * Get template variables
+  */
+  public function __get($key){
+    return $this->vars[$key];
+  }
 
-    function set_tpl($key, $var)
-    {
-        $this->vars[$key] = $var;
-    }
+  /*
+  * Set template variables
+  */
+  public function __set($key, $value){
+    $this->vars[$key] = $value;
+  }
 
-    function tpl_parse()
-    {
-        foreach ($this->vars as $find => $replace) {
-            $this->template = str_replace($find, $replace, $this->template);
-        }
-    }
+  /*
+  * Convert Object To String
+  */
+  public function __toString(){
+    extract($this->vars); // extract our template variables ex: $value
+    // print_r($this->vars ) ;  testing
+    chdir(dirname($this->template));
+    ob_start(); // store as internal buffer
+
+    include basename($this->template);  // include the template into our file
+
+    return ob_get_clean();
+  }
 }
