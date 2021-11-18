@@ -12,10 +12,10 @@
 <body>
 	<div class="container">
 				<div class="menu">
-					<?=$menu;?>
+					<?= $menu; ?>
 				</div>
 				<div class="content">
-					<?=$cont;?>
+					<?= $cont; ?>
 				</div>
 	</div>
 	<!-- <script src="../js/bootstrap.min.js"></script> -->

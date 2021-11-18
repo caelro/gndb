@@ -39,15 +39,15 @@ function getURL() {
 // $menu->tpl_parse();
 
 $url = getURL();
-$content = new template('templates/people.tpl');
 // $content = new template;
 // $content->set_tpl('{OPTIONS_DEPARTMENTS}', get_optons('departments', array('department', 'department')));
 // $content->set_tpl('{OPTIONS_POSITIONS}', get_optons('positions', array('position', 'position')));
 switch ($url[1]) {
 	case 'people':
+		// $content = new template(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "people.tpl");
+		switch ($url[2]) {
 		// $content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "content.tpl");
 		// $content->set_tpl('{CONT_HEAD}', 'Список сотрудников:');
-		switch ($url[2]) {
 			case 'add':
 				// Add new man
 				// $content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "people.tpl");
@@ -57,7 +57,7 @@ switch ($url[1]) {
 				// edit selected man
 				// $content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "people.tpl");
 				// $content->set_tpl('{VAL_LNAME}', 'value="Tsybulin"');
-				$content->val_lname="Tsybulin";
+				$val_lname="Tsybulin";
 				// $content->set_tpl('{VAL_FNAME}', 'value="Alex"');
 				// $content->set_tpl('{VAL_MNAME}', "");
 				// $content->set_tpl('{VAL_SEX_1}', "selected");
@@ -100,7 +100,8 @@ switch ($url[1]) {
 	// break;
 	default:
   	// $content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "content.tpl");
-		$cont='<h1>ЗДРАВСТВУЙТЕ!<br>Выбирайте необходимый параметр из меню слева<br><---</h1>';
+		// $content = new template(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "content.tpl");
+		// $content->cont_body='<h1>ЗДРАВСТВУЙТЕ!<br>Выбирайте необходимый параметр из меню слева<br><---</h1>';
 		break;
 }
 // $content->tpl_parse();
@@ -110,5 +111,29 @@ $root=ROOT;
 // $menu=$menu->template;
 $menu=make_menu($url[1]);
 // $cont=$content->template;
-$cont = $content;
-include 'templates/main.tpl';
+// $cont = $content;
+?>
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+	<title><?=$title;?></title>
+	<!-- <link rel="stylesheet" href="../css/bootstrap.css"/> -->
+	<!-- <link rel="stylesheet" href="../css/font-awesome.min.css"> -->
+	<link rel="stylesheet" href="<?=$root;?>css/style.css"/>
+	<script src="<?=$root;?>js/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+	<div class="container">
+				<div class="menu">
+					<?= $menu; ?>
+				</div>
+				<div class="content">
+					<?= $cont; ?>
+				</div>
+	</div>
+	<!-- <script src="../js/bootstrap.min.js"></script> -->
+</body>
+</html>
