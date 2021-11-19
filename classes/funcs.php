@@ -1,8 +1,8 @@
 <?php
 
-function get_table($name) {
+function get_table($name, $addin = NULL) {
 	$db = new sqlite('db.sqlite');
-	return $db->queryAll('select * from ' . $name);
+	return $db->queryAll('select * from ' . $name . ' ' . $addin);
 }
 
 function show_peoples() {
@@ -38,7 +38,7 @@ function show_orders() {
 	return $res;
 }
 
-function get_options($table, $value, $sel, $params = NULL) {
+function get_options($table, $value, $sel = 0, $params = NULL) {
 	$res = '';
 	foreach (get_table($table) as $t_val) {
 		$res .= '<option ';
@@ -46,6 +46,7 @@ function get_options($table, $value, $sel, $params = NULL) {
 		foreach ($params as $p_key => $p_val) {
 			$res .= $p_key . '="' . $t_val[$p_val] . '" ';
 		}
+		($t_val['id'] == $sel ? $res .= 'selected' : '');
 		// $res .= '" name="' . $name[0];
 		// $res .= (isset($addin) ? '" ' . $addin[0] . '="' . $val[$addin[1]] : '');
 		// $res .= '" {VAL_' . $name[0] . '_' . $val['id'] . '}>';
@@ -63,7 +64,14 @@ function make_menu($url) {
 	$res = '';
 	switch ($url) {
 		case 'people':
+			$res .= make_link('/people','Сотрудники');
 			$res .= make_link('/people/add','Добавить');
+			$res .= '<hr />';
+			$res .= make_link('/','На главную');
+			break;
+		case 'order':
+			$res .= make_link('/order','Сотрудники');
+			$res .= make_link('/order/add','Добавить');
 			$res .= '<hr />';
 			$res .= make_link('/','На главную');
 			break;
@@ -79,11 +87,6 @@ function make_menu($url) {
 
 
 
-
-function getdb($view) {
-	$db = new sqlite('db.sqlite');
-	return $db->queryAll("SELECT * FROM " . $view);
-}
 
 function insert_order($args) {
 	$db = new sqlite('db.sqlite');
@@ -107,24 +110,4 @@ function insert_order($args) {
 
 	}
 }
-
-// function getmissions() {
-// 	$db = new sqlite('db.sqlite');
-// 	return $db->queryAll("
-// 		SELECT * FROM missions
-// 		JOIN peoples ON peoples.id = missions.idpeople
-// 		JOIN mission_types ON mission_types.id = missions.type
-// 		JOIN objects ON objects.id = missions.object
-// 		");
-// }
-
-function get_optons($db, $name, $addin = NULL) {
-	$res = '';
-	foreach (getdb($db) as $val) {
-		$res .= '<option value="' . $val['id'] . '" name="' . $name[0] . (isset($addin) ? '" ' . $addin[0] . '="' . $val[$addin[1]] : '') . '" {VAL_' . $name[0] . '_' . $val['id'] . '}>' . $val[$name[1]] . '</option>';
-		$res .= "\n";
-	}
-	return $res;
-}
-
 ?>
