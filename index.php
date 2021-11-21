@@ -16,7 +16,6 @@ function getURL() {
 	return $res;
 }
 
-
 // if($_POST) {
 //     if($_POST['report'])
 //         $url[0]='report';
@@ -38,38 +37,40 @@ switch ($url[1]) {
 		$content = new template('people.tpl');
 		switch ($url[2]) {
 			case 'add':
-				// Add new man
+				// add new man
+				$content->options_sex=get_options('sex', 'sex');
+				$content->options_departments=get_options('departments', 'department');
+				$content->options_positions=get_options('positions', 'position');
 				break;
 			case 'edit':
 				// edit selected man
-				$tmp=get_table('peoples','where peopleid=' . $url[3]);
-				$content->val_lname=$tmp[0]['lname'];
-				$content->val_fname=$tmp[0]['fname'];
-				$content->val_mname=$tmp[0]['mname'];
-				$content->options_sex=get_options('sex', 'sex', $tmp[0]['sexid']);
-				$content->val_bday=$tmp[0]['birthday'];
-				$content->val_tabn=$tmp[0]['tab_N'];
-				$content->options_departments=get_options('departments', 'department', $tmp[0]['departmentid']);
-				$content->options_positions=get_options('positions', 'position', $tmp[0]['positionid']);
+				$tmp=get_table_row('peoples','where peopleid=' . $url[3]);
+				$content->val_lname=$tmp['lname'];
+				$content->val_fname=$tmp['fname'];
+				$content->val_mname=$tmp['mname'];
+				$content->val_bday=$tmp['birthday'];
+				$content->val_tabn=$tmp['tab_N'];
+				$content->options_sex=get_options('sex', 'sex', $tmp['sexid']);
+				$content->options_departments=get_options('departments', 'department', $tmp['departmentid']);
+				$content->options_positions=get_options('positions', 'position', $tmp['positionid']);
 				break;
 			default:
 				$content = new template('list.tpl');
 				$content->list_head='Список сотрудников:';
+				isset($url[2]) ? $content->list_item=show_people($url[2]) : '';
 				$content->list_body=show_peoples();
 				// header('Location: ' . $_SERVER['REQUEST_URI'] . '/add/');
 				break;
 		}
 		break;
 	case 'order':
-		$content = new template('mission.tpl');
-  	// $content->get_tpl(DOCROOT . 'templates' . DIRECTORY_SEPARATOR . 'content.tpl');
-    // $content->set_tpl('{CONT_HEAD}', 'Список событий:');
+		$content = new template('order.tpl');
 		switch ($url[2]) {
 			case 'add':
-				// $content->set_tpl('{OPTIONS_DEPARTMENTS}', get_optons('departments', array('department', 'department')));
-        // $content->set_tpl('{OPTIONS_PEOPLES}', get_optons('all_peoples', array('people', 'fullname'), array('otdel','departmentid')));
-        // $content->set_tpl('{OPTIONS_PEOPLES}', get_options('all_peoples', 'fullname', 0, array('otdel'=>'departmentid')));
-        // $content->set_tpl('{OPTIONS_TYPES}', get_options('all_types', 'type', 0));
+				$content->options_departments=get_options('departments', 'department');
+				// $content->options_positions=get_options('positions', 'position');
+				$content->options_peoples=get_options('all_peoples', 'fullname', 0, array('otdel'=>'departmentid'));
+				$content->options_types=get_options('all_types', 'type');
         // $content->set_tpl('{OPTIONS_OBJ}', get_optons('objects', array('object', 'object')));
         // $content->set_tpl('{OPTIONS_VIEW}', get_optons('views', 'view'));
         // $content->set_tpl('{OPTIONS_AUTO}', get_optons('all_autos', array('auto', 'auto')));
@@ -78,25 +79,25 @@ switch ($url[1]) {
 				break;
 
 			default:
-				// $content->set_tpl('{CONT_BODY}', show_orders());
-				# code...
+				$content = new template('list.tpl');
+				$content->list_head='Список приказов:';
+				$content->list_body=show_orders();
+				// header('Location: ' . $_SERVER['REQUEST_URI'] . '/add/');
 				break;
 		}
 		break;
 	// case 'report':
   //       $content->get_tpl(DOCROOT . 'templates' . DIRECTORY_SEPARATOR . 'report.tpl');
-	// break;
+	// 	break;
 	default:
 		$content = new template('content.tpl');
 		$content->cont_head='ООО "Газпром газнадзор"<br>филиал Волгоградское управление';
 		$content->cont_body='<h3><---<br><--- Выбирайте необходимый параметр из меню слева<br><---</h3>';
 		break;
 }
-// $content->tpl_parse();
 
-$menu=make_menu($url[1]);
-// $cont=$content->template;
-// $cont = $content;
+// $menu=make_menu($url[1]);
+$menu = new template('menu.tpl');
 ?>
 
 <!DOCTYPE html>
