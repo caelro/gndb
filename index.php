@@ -7,6 +7,7 @@ define('DOCROOT', realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
 require_once(DOCROOT . 'classes' . DIRECTORY_SEPARATOR . 'sqlite.php');
 require_once(DOCROOT . 'classes' . DIRECTORY_SEPARATOR . 'template.php');
 require_once(DOCROOT . 'classes' . DIRECTORY_SEPARATOR . 'funcs.php');
+require_once(DOCROOT . 'classes' . DIRECTORY_SEPARATOR . 'peoples.php');
 
 function getURL() {
 	$uri = explode('/', $_SERVER['REQUEST_URI']);
@@ -57,7 +58,7 @@ switch ($url[1]) {
 			default:
 				$content = new template('list.tpl');
 				$content->list_head='Список сотрудников:';
-				isset($url[2]) ? $content->list_item=show_people($url[2]) : '';
+				($url[2]!="") ? $content->list_item=show_people($url[2]) : '';
 				$content->list_body=show_peoples();
 				// header('Location: ' . $_SERVER['REQUEST_URI'] . '/add/');
 				break;
@@ -92,12 +93,15 @@ switch ($url[1]) {
 	default:
 		$content = new template('content.tpl');
 		$content->cont_head='ООО "Газпром газнадзор"<br>филиал Волгоградское управление';
-		$content->cont_body='<h3><---<br><--- Выбирайте необходимый параметр из меню слева<br><---</h3>';
+		$content->cont_body='<h2>Сегодня: ' . date('d.m.Y') . '</h2>';
 		break;
 }
 
 // $menu=make_menu($url[1]);
 $menu = new template('menu.tpl');
+
+$pp = new peoples();
+$pp->get_people(23);
 ?>
 
 <!DOCTYPE html>

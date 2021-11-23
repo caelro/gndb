@@ -51,7 +51,7 @@ function show_peoples() {
 		'<td>' . $val['position'] . '</td>' .
 		'<td>' . $val['department'] . '</td>' .
 		'<td><a href="/people/edit/' . $val['id'] . '">редактировать</a> <a href="/people/del/' . $val['id'] . '">удалить</a></td>' .
-		'</tr>';
+		'</tr>' . "\n";
 	}
 	// $res = '<tr><td colspan="3" align="center">' . $val['department'] . '</td></tr>' . $res;
 	$res = '<table class="table_blur">' . $res . '</table>';
