@@ -79,8 +79,10 @@ function get_options($table, $value, $sel = 0, $params = NULL) {
 	foreach (get_table($table) as $t_val) {
 		$res .= '<option ';
 		$res .= 'value="' . $t_val['id'] . '" ';
-		foreach ($params as $p_key => $p_val) {
-			$res .= $p_key . '="' . $t_val[$p_val] . '" ';
+		if (!is_null($params)) {
+			foreach ($params as $p_key => $p_val) {
+				$res .= $p_key . '="' . $t_val[$p_val] . '" ';
+			}
 		}
 		($t_val['id'] == $sel ? $res .= 'selected' : '');
 		$res .= '>' . $t_val[$value];
