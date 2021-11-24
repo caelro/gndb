@@ -5,6 +5,7 @@ class peoples {
   // private $peopleid;
   private $db;
   public $man = array();
+  public $people_list;
 
   function __construct() {
     $this->db = new sqlite('db.sqlite');
@@ -12,10 +13,23 @@ class peoples {
 
   function get_people($id) {
     $this->man = $this->db->queryRow('select * from peoples where peopleid='.$id);
-    echo $this->man['peopleid'] . ' - ' . $this->man['lname'] . ' ' . $this->man['fname'];
+    return $this->man;
   }
 
   function get_list_peoples() {
+    $this->people_list = $this->db->queryAll('select * from peoples');
+    return $this->people_list;
+  }
+
+  function add_man($data) {
+    // $this->db->query(sprintf('insert into peoples values ()'))
+  }
+
+  function update_man($id, $data) {
+
+  }
+
+  function del_man($id) {
 
   }
 }

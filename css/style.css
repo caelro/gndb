@@ -14,6 +14,38 @@ body {
   margin: 10px;
 }
 
+.layout {
+  width: 100%;
+  /* margin: auto; */
+  /* position: relative; */
+  overflow: hidden;
+  min-width: 800px;
+  max-width: 1200px;
+}
+
+.sidebar, .content {
+  position: absolute;
+}
+
+.sidebar {
+  height: 100%;
+  width: 200px;
+  float: left;
+  /*background-color: cyan;*/
+  /*margin-right: 20px;*/
+  /* z-index: 1; */
+  /*  top: 10px;
+  left: 10px;*/
+}
+
+.content {
+  /*background-color: yellow;*/
+  /*overflow-x: scroll;*/
+  /*padding-left: 10px;*/
+  margin-left: 210px;
+  /* width: 100%; */
+}
+
 h1, h2, h3, h4, h5, h6{
   font-family: "Arial Narrow", Arial, serif;
   font-weight: 300;
@@ -143,29 +175,4 @@ input {
 
 input[type="text"] {
    min-width: 400px;
-}
-
-.container {
-  width: 100%;
-  /*margin: 10px;*/
-}
-
-.menu {
-  height: 100%;
-  width: 200px;
-  float: left;
-  /*background-color: cyan;*/
-  /*margin-right: 20px;*/
-  position: fixed;
-  z-index: 1;
-/*  top: 10px;
-left: 10px;*/
-overflow-x: hidden;
-}
-
-.content {
-  /*background-color: yellow;*/
-  /*overflow-x: scroll;*/
-  /*padding-left: 10px;*/
-  margin-left: 210px;
 }

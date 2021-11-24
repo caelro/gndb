@@ -92,16 +92,14 @@ switch ($url[1]) {
 	// 	break;
 	default:
 		$content = new template('content.tpl');
-		$content->cont_head='ООО "Газпром газнадзор"<br>филиал Волгоградское управление';
-		$content->cont_body='<h2>Сегодня: ' . date('d.m.Y') . '</h2>';
+		// $content->cont_head='ООО "Газпром газнадзор"<br>филиал Волгоградское управление';
+		$content->cont_head='<h2>Сегодня: ' . date('d.m.Y') . '</h2>';
+		$content->cont_body='Сотрудников в коммандировке: 15<br>Сотрудников в отпуске: 7<br>Сотрудников на больничном: 2';
 		break;
 }
 
 // $menu=make_menu($url[1]);
 $menu = new template('menu.tpl');
-
-$pp = new peoples();
-$pp->get_people(23);
 ?>
 
 <!DOCTYPE html>
@@ -116,8 +114,8 @@ $pp->get_people(23);
 	<script src='<?=ROOT;?>js/jquery-3.4.1.min.js'></script>
 </head>
 <body>
-	<div class='container'>
-				<div class='menu'>
+	<div class='layout'>
+				<div class='sidebar'>
 					<?= $menu; ?>
 				</div>
 				<div class='content'>
