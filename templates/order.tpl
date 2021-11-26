@@ -10,8 +10,8 @@
 	}
 </script>
 
-<form action='' method='post' id='addorder' name='addorder'>
-	<select name='department' id='department' required onchange='showDepartment(this.value)'>
+<form action='' method='post' name='addorder'>
+	<select name='department' required onchange='showDepartment(this.value)'>
 		<option disabled selected value=''>Отдел</option>
 		<?=$options_departments;?>
 	</select><br />
@@ -19,7 +19,7 @@
 		<option disabled selected value=''>Ф.И.О.</option>
 		<?=$options_peoples;?>
 	</select><br />
-	<select name='type' id='type' required>
+	<select name='type' required>
 		<option disabled selected value=''>тип события</option>
 		<?=$options_types;?>
 	</select><br />

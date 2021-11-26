@@ -10,6 +10,13 @@ function get_table_row($name, $addin = NULL) {
 	return $db->queryRow('select * from ' . $name . ' ' . $addin);
 }
 
+function add_people($args) {
+	$db = new sqlite('db.sqlite');
+	foreach ($args as $key => $value) {
+		echo $key.' - '.$value.'<br>';
+	}
+}
+
 function add_record($args) {
 	$db = new sqlite('db.sqlite');
 	if ($args['addmission']) {

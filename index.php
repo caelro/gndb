@@ -39,9 +39,15 @@ switch ($url[1]) {
 		switch ($url[2]) {
 			case 'add':
 				// add new man
+				if($_POST['addpeople']) {
+					add_people($_POST);
+					// header('Location: ' . $_SERVER['REQUEST_URI']);
+				}
 				$content->options_sex=get_options('sex', 'sex');
 				$content->options_departments=get_options('departments', 'department');
 				$content->options_positions=get_options('positions', 'position');
+				$content->name_addpeople='addpeople';
+				$content->val_addpeople='Добавить нового сотрудника';
 				break;
 			case 'edit':
 				// edit selected man
@@ -54,6 +60,8 @@ switch ($url[1]) {
 				$content->options_sex=get_options('sex', 'sex', $tmp['sexid']);
 				$content->options_departments=get_options('departments', 'department', $tmp['departmentid']);
 				$content->options_positions=get_options('positions', 'position', $tmp['positionid']);
+				$content->name_addpeople='updatepeople';
+				$content->val_addpeople='Обновить данные сотрудника';
 				break;
 			default:
 				$content = new template('list.tpl');

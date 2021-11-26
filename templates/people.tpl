@@ -5,10 +5,10 @@
 //	});
 </script>
 
-<form action='' method='post'>
-	<input type='text' id='lname' name='lname' placeholder='Фамилия' required value='<?=$val_lname;?>'><br />
-	<input type='text' id='fname' name='fname' placeholder='Имя' required value='<?=$val_fname;?>'><br />
-	<input type='text' id='mname' name='mname' placeholder='Отчество' required value='<?=$val_mname;?>'><br />
+<form action='' method='post' name='addpeople'>
+	<input type='text' name='lname' placeholder='Фамилия' required value='<?=$val_lname;?>'><br />
+	<input type='text' name='fname' placeholder='Имя' required value='<?=$val_fname;?>'><br />
+	<input type='text' name='mname' placeholder='Отчество' required value='<?=$val_mname;?>'><br />
 	<select name='sex' required>
 		<option disabled selected value=''>Пол</option>
 		<?=$options_sex;?>
@@ -16,14 +16,14 @@
 	День рождения:<br />
 	<input type='date' name='bday' value='<?=$val_bday;?>'><br />
 	<input type='text' name='tabN' placeholder='Табельный номер' value='<?=$val_tabn;?>'><br />
-	<select name='department' id='department' required>
+	<select name='department' required>
 		<option disabled selected value=''>Отдел</option>
 		<?=$options_departments;?>
 	</select><br />
-	<select name='positions' id='positions' required>
+	<select name='positions' required>
 		<option disabled selected value=''>Должность</option>
 		<?=$options_positions;?>
 	</select><br />
 	<!-- <input type='submit' name='addpeople' value='Добавить сотрудника' {HIDDEN_1}> -->
-	<input type='submit' name='updatepeople' value='Добавить / редактировать сотрудника'>
+	<input type='submit' name='<?=$name_addpeople;?>' value='<?=$val_addpeople;?>'>
 </form>
