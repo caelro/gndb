@@ -1,2 +1,2 @@
-<div class='centered'><?=$cont_head;?></div>
+<div class="centered"><?=$cont_head;?></div>
 <?=$cont_body;?>
