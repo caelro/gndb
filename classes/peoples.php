@@ -22,11 +22,13 @@ class peoples {
   }
 
   function add_man($data) {
-    $this->db->query(sprintf("insert into peoples ('lname','fname','mname') values ('%s','%s','%s')",$this->db->clean(),$this->db->clean(),$this->db->clean()));
-    $this->db->query(sprintf("insert into peoples ('birthday') values ()",));
-    $this->db->query(sprintf("insert into peoples ('sexid') values ()",));
-    $this->db->query(sprintf("insert into peoples ('departmentid','positionid') values ()",));
-    $this->db->query(sprintf("insert into peoples ('tab_N') values ()",));
+    $this->db->query(sprintf("insert into peoples ('lname') values ('%s')",$this->db->clean($data['lname'])));
+    $this->db->query(sprintf("insert into peoples ('fname') values ('%s')",$this->db->clean()));
+    $this->db->query(sprintf("insert into peoples ('mname') values ('%s')",$this->db->clean()));
+    $this->db->query(sprintf("insert into peoples ('birthday') values ('%s')",$this->db->clean()));
+    $this->db->query(sprintf("insert into peoples ('sexid') values (%d)",$this->db->clean()));
+    $this->db->query(sprintf("insert into peoples ('departmentid','positionid') values (%d, %d)",$this->db->clean(),$this->db->clean()));
+    $this->db->query(sprintf("insert into peoples ('tab_N') values ('%s')",$this->db->clean()));
   }
 
   function update_man($id, $data) {
