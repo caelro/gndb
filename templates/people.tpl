@@ -20,7 +20,7 @@
 		<option disabled selected value="">Отдел</option>
 		<?=$options_departments;?>
 	</select><br />
-	<select name="positions" required>
+	<select name="position" required>
 		<option disabled selected value="">Должность</option>
 		<?=$options_positions;?>
 	</select><br />

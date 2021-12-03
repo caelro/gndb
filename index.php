@@ -17,6 +17,7 @@ function getURL() {
 	return $res;
 }
 
+$man = new peoples();
 $url = getURL();
 switch ($url[1]) {
 	case "people":
@@ -25,7 +26,8 @@ switch ($url[1]) {
 			case "add":
 				// add new man
 				if($_POST["addpeople"]) {
-					add_people($_POST);
+					// add_people($_POST);
+					$man->add_man($_POST);
 					// header("Location: " . $_SERVER["REQUEST_URI"]);
 					// exit;
 				}

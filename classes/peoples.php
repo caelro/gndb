@@ -22,13 +22,27 @@ class peoples {
   }
 
   function add_man($data) {
-    $this->db->query(sprintf("insert into peoples ('lname') values ('%s')",$this->db->clean($data['lname'])));
-    $this->db->query(sprintf("insert into peoples ('fname') values ('%s')",$this->db->clean()));
-    $this->db->query(sprintf("insert into peoples ('mname') values ('%s')",$this->db->clean()));
-    $this->db->query(sprintf("insert into peoples ('birthday') values ('%s')",$this->db->clean()));
-    $this->db->query(sprintf("insert into peoples ('sexid') values (%d)",$this->db->clean()));
-    $this->db->query(sprintf("insert into peoples ('departmentid','positionid') values (%d, %d)",$this->db->clean(),$this->db->clean()));
-    $this->db->query(sprintf("insert into peoples ('tab_N') values ('%s')",$this->db->clean()));
+    // $this->db->query(sprintf("INSERT INTO peoples ('lname') values ('%s')",$this->db->clean($data['lname'])));
+    // $this->db->query(sprintf("insert into peoples ('fname') values ('%s')",$this->db->clean($data['fname'])));
+    // $this->db->query(sprintf("insert into peoples ('mname') values ('%s')",$this->db->clean($data['mname'])));
+    // $this->db->query(sprintf("insert into peoples ('birthday') values ('%s')",$this->db->clean($data['bday'])));
+    // $this->db->query(sprintf("insert into peoples ('sexid') values (%d)",$this->db->clean($data['sex'])));
+    // $this->db->query(sprintf("insert into peoples ('departmentid') values (%d)",$this->db->clean($data['department'])));
+    // $this->db->query(sprintf("insert into peoples ('positionid') values (%d)",$this->db->clean($data['position'])));
+    // $this->db->query(sprintf("insert into peoples ('tab_N') values ('%s')",$this->db->clean($data['tabN'])));
+    foreach ($data as $key => $value) {
+  		echo "$key - $value<br>";
+  	}
+    $this->db->query(sprintf("INSERT INTO peoples VALUES (%s, %s, %s, %s, %d, %d, %d, %s)",
+      $data['lname'],
+      $data['fname'],
+      $data['mname'],
+      $data['bday'],
+      $data['sex'],
+      $data['department'],
+      $data['position'],
+      $data['tabN']
+    ));
   }
 
   function update_man($id, $data) {
