@@ -30,19 +30,31 @@ class peoples {
     // $this->db->query(sprintf("insert into peoples ('departmentid') values (%d)",$this->db->clean($data['department'])));
     // $this->db->query(sprintf("insert into peoples ('positionid') values (%d)",$this->db->clean($data['position'])));
     // $this->db->query(sprintf("insert into peoples ('tab_N') values ('%s')",$this->db->clean($data['tabN'])));
-    foreach ($data as $key => $value) {
-  		echo "$key - $value<br>";
-  	}
-    $this->db->query(sprintf("INSERT INTO peoples VALUES (%s, %s, %s, %s, %d, %d, %d, %s)",
-      $data['lname'],
-      $data['fname'],
-      $data['mname'],
-      $data['bday'],
-      $data['sex'],
-      $data['department'],
-      $data['position'],
-      $data['tabN']
-    ));
+
+    // foreach ($data as $key => $value) {
+  	// 	echo "$key - $value<br>";
+  	// }
+    $q = "INSERT INTO peoples (
+      lname,
+      fname,
+      mname,
+      birthday,
+      sexid,
+      departmentid,
+      positionid,
+      tab_N
+    ) VALUES (
+      '$data[lname]',
+      '$data[fname]',
+      '$data[mname]',
+      ". ($data[bday] ? "'$data[bday]'" : 'NULL') .",
+      $data[sex],
+      $data[department],
+      $data[position],
+      ". ($data[tabN] ? "'$data[tabN]'" : 'NULL') ."
+    )";
+    echo $q;
+    echo $this->db->query($q);
   }
 
   function update_man($id, $data) {
