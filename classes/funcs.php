@@ -1,19 +1,29 @@
 <?php
 
 function get_table($name) {
-	$db = new sqlite("db.sqlite");
-	return $db->queryAll("select * from " . $name);
+	// $db = new sqlite("db.sqlite");
+	$db = new PDO('sqlite:db.sqlite');
+	$st = $db->query("SELECT * FROM " . $name);
+	return $st->fetchAll();
 }
 
 function get_table_row($name, $addin = NULL) {
 	$db = new sqlite("db.sqlite");
-	return $db->queryRow("select * from " . $name . " " . $addin);
+	return $db->queryRow("SELECT * FROM " . $name . " " . $addin);
 }
 
-function add_people($args) {
+function test_add_man() {
 	$db = new sqlite("db.sqlite");
-	foreach ($args as $key => $value) {
-		echo "$key - $value<br>";
+	// $db = new PDO('sqlite:db.sqlite');
+	// foreach ($args as $key => $value) {
+	// 	echo "$key - $value<br>";
+	// }
+	$q = "INSERT INTO peoples (lname,fname,mname,sexid,departmentid,positionid) VALUES ('Petrov','Petr','Petrovich',1,2,3)";
+	echo $q."<br><br>";
+	try {
+		$db->query($q);
+	} catch (Exception $e) {
+		die($e);
 	}
 }
 
