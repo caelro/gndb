@@ -25,26 +25,17 @@ class peoples {
     // foreach ($data as $key => $value) {
   	// 	echo "$key - $value<br>";
   	// }
-    $q = "INSERT INTO peoples (
-      lname,
-      fname,
-      mname,
-      birthday,
-      sexid,
-      departmentid,
-      positionid,
-      tab_N
-    ) VALUES (
-      '$data[lname]',
-      '$data[fname]',
-      '$data[mname]',
-      ". ($data[bday] ? "'$data[bday]'" : 'NULL') .",
-      $data[sex],
-      $data[department],
-      $data[position],
-      ". ($data[tabN] ? "'$data[tabN]'" : 'NULL') ."
-    )";
-    echo $q;
+    $q = sprintf("INSERT INTO peoples (lname,fname,mname,birthday,sexid,departmentid,positionid,tab_N) VALUES ('%s','%s','%s','%s',%d,%d,%d,'%s')",
+      $this->db->clean($data[lname]),
+      $this->db->clean($data[fname]),
+      $this->db->clean($data[mname]),
+      $this->db->clean($data[bday] ? $data[bday] : ''),
+      $this->db->clean($data[sex]),
+      $this->db->clean($data[department]),
+      $this->db->clean($data[position]),
+      $this->db->clean($data[tabN] ? $data[tabN] : '')
+    );
+    // echo $q;
     $this->db->query($q);
   }
 

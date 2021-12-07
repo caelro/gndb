@@ -12,21 +12,6 @@ function get_table_row($name, $addin = NULL) {
 	return $db->queryRow("SELECT * FROM " . $name . " " . $addin);
 }
 
-function test_add_man() {
-	$db = new sqlite("db.sqlite");
-	// $db = new PDO('sqlite:db.sqlite');
-	// foreach ($args as $key => $value) {
-	// 	echo "$key - $value<br>";
-	// }
-	$q = "INSERT INTO peoples (lname,fname,mname,sexid,departmentid,positionid) VALUES ('Petrov','Petr','Petrovich',1,2,3)";
-	echo $q."<br><br>";
-	try {
-		$db->query($q);
-	} catch (Exception $e) {
-		die($e);
-	}
-}
-
 // function add_record($args) {
 // 	$db = new sqlite("db.sqlite");
 // 	if ($args["addmission"]) {
