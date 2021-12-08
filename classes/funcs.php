@@ -36,7 +36,7 @@ function get_table_row($name, $addin = NULL) {
 // }
 
 function show_people($id) {
-	$tmp = get_table_row("peoples","where peopleid=" . $id);
+	$tmp = get_table_row("peoples","where id=" . $id);
 	$res .= "<div>Фамилия: $tmp[lname] </div>";
 	$res .= "<div>Имя: $tmp[fname] </div>";
 	$res .= "<div>Отчество: $tmp[mname] </div>";

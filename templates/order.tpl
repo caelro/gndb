@@ -29,7 +29,7 @@
 	<input type="date" name="edate"><br />
 	<!-- <input type="checkbox" name="plan" value="1" />План<br /> -->
 	<input type="text" name="num" placeholder="Номер приказа"><br />
-	<input type="text" name="obj" placeholder="Объект" style="width: 500px;"><br />
+	<input type="text" name="obj" placeholder="Объект"><br />
 	<!-- <select name="obj">
 		<option disabled selected value="">направление</option>
 		{OPTIONS_OBJ}
