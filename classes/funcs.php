@@ -44,9 +44,11 @@ function show_people($id) {
 }
 
 function show_peoples() {
+	$man = new peoples();
 	$res = "<tr><th>#</th><th>Ф.И.О.</th><th>Должность</th><th>Отдел</th><th>Действие</th></tr>";
 	$num = 1;
-	foreach (get_table("all_peoples") as $val) {
+	// foreach (get_table("all_peoples") as $val) {
+	foreach ($man->get_list_peoples() as $val) {
 		$res .= "<tr>" .
 		"<td>$num</td>" .
 		"<td><a href=\"/people/$val[id]\">$val[fullname]</a></td>" .
