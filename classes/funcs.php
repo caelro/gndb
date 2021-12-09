@@ -35,32 +35,32 @@ function get_table_row($name, $addin = NULL) {
 // 	}
 // }
 
-function show_people($id) {
-	$tmp = get_table_row("peoples","where id=" . $id);
-	$res .= "<div>Фамилия: $tmp[lname] </div>";
-	$res .= "<div>Имя: $tmp[fname] </div>";
-	$res .= "<div>Отчество: $tmp[mname] </div>";
-	return $res;
-}
+// function show_people($id) {
+// 	$tmp = get_table_row("peoples","where id=" . $id);
+// 	$res .= "<div>Фамилия: $tmp[lname] </div>";
+// 	$res .= "<div>Имя: $tmp[fname] </div>";
+// 	$res .= "<div>Отчество: $tmp[mname] </div>";
+// 	return $res;
+// }
 
-function show_peoples() {
-	$man = new peoples();
-	$res = "<tr><th>#</th><th>Ф.И.О.</th><th>Должность</th><th>Отдел</th><th>Действие</th></tr>";
-	$num = 1;
-	// foreach (get_table("all_peoples") as $val) {
-	foreach ($man->get_list_peoples() as $val) {
-		$res .= "<tr>" .
-		"<td>$num</td>" .
-		"<td><a href=\"/people/$val[id]\">$val[fullname]</a></td>" .
-		"<td>$val[position]</td>" .
-		"<td>$val[department]</td>" .
-		"<td><a href=\"/people/edit/$val[id]\">редактировать</a> <a href=\"/people/del/$val[id]\">удалить</a></td>" .
-		"</tr>\n";
-		$num++;
-	}
-	$res = "<table class=\"table_blur\">$res</table>";
-	return $res;
-}
+// function show_peoples() {
+// 	$man = new peoples();
+// 	$res = "<tr><th>#</th><th>Ф.И.О.</th><th>Должность</th><th>Отдел</th><th>Действие</th></tr>";
+// 	$num = 1;
+// 	// foreach (get_table("all_peoples") as $val) {
+// 	foreach ($man->get_list_peoples() as $val) {
+// 		$res .= "<tr>" .
+// 		"<td>$num</td>" .
+// 		"<td><a href=\"/people/$val[id]\">$val[fullname]</a></td>" .
+// 		"<td>$val[position]</td>" .
+// 		"<td>$val[department]</td>" .
+// 		"<td><a href=\"/people/edit/$val[id]\">редактировать</a> <a href=\"/people/del/$val[id]\">удалить</a></td>" .
+// 		"</tr>\n";
+// 		$num++;
+// 	}
+// 	$res = "<table class=\"table_blur\">$res</table>";
+// 	return $res;
+// }
 
 function show_orders() {
 	$res = "<tr><th>#</th><th>Ф.И.О.</th><th>Отдел</th><th>Тип</th><th>Период</th><th>Действие</th></tr>";

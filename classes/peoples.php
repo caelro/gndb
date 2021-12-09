@@ -20,8 +20,35 @@ class peoples {
   }
 
   function get_man($id) {
-    $this->man = $this->db->queryRow("select * from peoples where id=".$id);
-    return $this->man;
+    $st = $this->db->query("SELECT * FROM peoples WHERE id=".$id);
+    $res = $st->fetchAll();
+    return $res[0];
+  }
+
+  function show_peoples() {
+  	$res = "<tr><th>#</th><th>Ф.И.О.</th><th>Должность</th><th>Отдел</th><th>Действие</th></tr>";
+  	$num = 1;
+  	// foreach (get_table("all_peoples") as $val) {
+  	foreach ($this->get_list_peoples() as $val) {
+  		$res .= "<tr>" .
+  		"<td>$num</td>" .
+  		"<td><a href=\"/people/$val[id]\">$val[fullname]</a></td>" .
+  		"<td>$val[position]</td>" .
+  		"<td>$val[department]</td>" .
+  		"<td><a href=\"/people/edit/$val[id]\">редактировать</a> <a href=\"/people/del/$val[id]\">удалить</a></td>" .
+  		"</tr>\n";
+  		$num++;
+  	}
+  	$res = "<table class=\"table_blur\">$res</table>";
+  	return $res;
+  }
+
+  function show_people($id) {
+  	$tmp = $this->get_man($id);
+  	$res .= "<div>Фамилия: $tmp[lname] </div>";
+  	$res .= "<div>Имя: $tmp[fname] </div>";
+  	$res .= "<div>Отчество: $tmp[mname] </div>";
+  	return $res;
   }
 
   function add_man($data) {

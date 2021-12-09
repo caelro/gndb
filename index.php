@@ -42,7 +42,8 @@ switch ($url[1]) {
 				break;
 			case "edit":
 				// edit selected man
-				$tmp=get_table_row("peoples","where peopleid=" . $url[3]);
+				// $tmp=get_table_row("peoples","where peopleid=" . $url[3]);
+				$tmp=$man->get_man($url[3]);
 				$content->val_lname=$tmp["lname"];
 				$content->val_fname=$tmp["fname"];
 				$content->val_mname=$tmp["mname"];
@@ -57,8 +58,8 @@ switch ($url[1]) {
 			default:
 				$content = new template("list.tpl");
 				$content->list_head="Список сотрудников:";
-				($url[2]!="") ? $content->list_item=show_people($url[2]) : "";
-				$content->list_body=show_peoples();
+				($url[2]!="") ? $content->list_item=$man->show_people($url[2]) : "";
+				$content->list_body=$man->show_peoples();
 				// header("Location: " . $_SERVER["REQUEST_URI"] . "/add/");
 				break;
 		}
