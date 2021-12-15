@@ -55,7 +55,7 @@ class peoples {
     // foreach ($data as $key => $value) {
   	// 	echo "$key - $value<br>";
   	// }
-    $q = "INSERT INTO peoples (lname,fname,mname,birthday,sexid,departmentid,positionid,tab_N) VALUES (:lname,:fname,:mname,:bday,:sex,:dep,:pos,:tN)";
+    $q = "INSERT INTO peoples (lname,fname,mname,birthday,sexid,departmentid,positionid,tab_N,orderdate) VALUES (:lname,:fname,:mname,:bday,:sex,:dep,:pos,:tN,:odate)";
     $stmt = $this->db->prepare($q);
     $stmt->execute([
       ":lname"=>$data[lname],
@@ -65,16 +65,39 @@ class peoples {
       ":sex"=>$data[sex],
       ":dep"=>$data[department],
       ":pos"=>$data[position],
-      ":tN"=>$data[tabN] ? $data[tabN] : NULL
+      ":tN"=>$data[tabN] ? $data[tabN] : NULL,
+      ":odate"=>$data[odate] ? $data[odate] : NULL
     ]);
   }
 
-  function update_man($id, $data) {
-
+  function update_man($data) {
+    $before = $this->get_man($data["id"]);
+    // foreach ($before as $key => $value) {
+  	// 	echo "$key - $value<br>";
+  	// }
+    // echo "<hr>";
+    // foreach ($data as $key => $value) {
+    //   echo "$key - $value<br>";
+    // }
+    // echo "<hr>";
+    $q = "UPDATE peoples SET lname=:lname,fname=:fname,mname=:mname,birthday=:bday,sexid=:sex,departmentid=:dep,positionid=:pos,tab_N=:tN,orderdate=:odate WHERE id=$data[id]";
+    $stmt = $this->db->prepare($q);
+    $stmt->execute([
+      ":lname"=>$data[lname],
+      ":fname"=>$data[fname],
+      ":mname"=>$data[mname],
+      ":bday"=>$data[bday] ? $data[bday] : NULL,
+      ":sex"=>$data[sex],
+      ":dep"=>$data[department],
+      ":pos"=>$data[position],
+      ":tN"=>$data[tabN] ? $data[tabN] : NULL,
+      ":odate"=>$data[odate] ? $data[odate] : NULL
+    ]);
   }
 
   function del_man($id) {
-
+    // $this->db->exec("DELETE FROM peoples WHERE id=$id");
+    $this->db->exec("UPDATE peoples SET fired=1 WHERE id=$id");
   }
 }
 

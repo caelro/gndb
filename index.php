@@ -31,7 +31,7 @@ switch ($url[1]) {
 				if($_POST["addpeople"]) {
 					// add_people($_POST);
 					$man->add_man($_POST);
-					// header("Location: " . $_SERVER["REQUEST_URI"]);
+					header("Location: " . ROOT . "people/");
 					// exit;
 				}
 				$content->options_sex=get_options("sex", "sex");
@@ -41,19 +41,31 @@ switch ($url[1]) {
 				$content->val_addpeople="Добавить нового сотрудника";
 				break;
 			case "edit":
+				if($_POST["updatepeople"]) {
+					// add_people($_POST);
+					$man->update_man($_POST);
+					header("Location: " . ROOT . "people/");
+					exit;
+				}
 				// edit selected man
 				// $tmp=get_table_row("peoples","where peopleid=" . $url[3]);
 				$tmp=$man->get_man($url[3]);
+				$content->val_id=$tmp["id"];
 				$content->val_lname=$tmp["lname"];
 				$content->val_fname=$tmp["fname"];
 				$content->val_mname=$tmp["mname"];
 				$content->val_bday=$tmp["birthday"];
 				$content->val_tabn=$tmp["tab_N"];
+				$content->val_odate=$tmp["orderdate"];
 				$content->options_sex=get_options("sex", "sex", $tmp["sexid"]);
 				$content->options_departments=get_options("departments", "department", $tmp["departmentid"]);
 				$content->options_positions=get_options("positions", "position", $tmp["positionid"]);
 				$content->name_addpeople="updatepeople";
 				$content->val_addpeople="Обновить данные сотрудника";
+				break;
+			case "del":
+				$man->del_man($url[3]);
+				header("Location: " . ROOT . "people/");
 				break;
 			default:
 				$content = new template("list.tpl");
