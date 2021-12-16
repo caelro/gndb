@@ -35,7 +35,7 @@ class peoples {
   		"<td><a href=\"/people/$val[id]\">$val[fullname]</a></td>" .
   		"<td>$val[department]</td>" .
       "<td>$val[position]</td>" .
-  		"<td><a href=\"/people/edit/$val[id]\">редактировать</a> <a href=\"/people/del/$val[id]\" onclick=\"confirm('Точно удалить?')\" LANGUAGE=\"Javascript\">удалить</a></td>" .
+  		"<td><a href=\"/people/edit/$val[id]\">редактировать</a> <a href=\"/people/del/$val[id]\" onclick=\"return confirm('Точно удалить?')\" LANGUAGE=\"Javascript\">удалить</a></td>" .
   		"</tr>\n";
   		$num++;
   	}
