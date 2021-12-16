@@ -26,16 +26,16 @@ class peoples {
   }
 
   function show_peoples() {
-  	$res = "<tr><th>#</th><th>Ф.И.О.</th><th>Должность</th><th>Отдел</th><th>Действие</th></tr>";
+  	$res = "<tr><th>#</th><th>Ф.И.О.</th><th>Отдел</th><th>Должность</th><th>Действие</th></tr>";
   	$num = 1;
   	// foreach (get_table("all_peoples") as $val) {
   	foreach ($this->get_list_peoples() as $val) {
   		$res .= "<tr>" .
   		"<td>$num</td>" .
   		"<td><a href=\"/people/$val[id]\">$val[fullname]</a></td>" .
-  		"<td>$val[position]</td>" .
   		"<td>$val[department]</td>" .
-  		"<td><a href=\"/people/edit/$val[id]\">редактировать</a> <a href=\"/people/del/$val[id]\">удалить</a></td>" .
+      "<td>$val[position]</td>" .
+  		"<td><a href=\"/people/edit/$val[id]\">редактировать</a> <a href=\"/people/del/$val[id]\" onclick=\"confirm('Точно удалить?')\" LANGUAGE=\"Javascript\">удалить</a></td>" .
   		"</tr>\n";
   		$num++;
   	}
