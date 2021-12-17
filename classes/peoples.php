@@ -1,28 +1,28 @@
 <?php
-// require_once(DOCROOT . "classes" . DIRECTORY_SEPARATOR . "sqlite.php");
 
 class peoples {
-  // private $peopleid;
   private $db;
   public $man = array();
-  // public $people_list;
 
   function __construct() {
-    // $this->db = new sqlite("db.sqlite");
     $this->db = new PDO("sqlite:db.sqlite");
   }
 
   function get_list_peoples() {
     $st = $this->db->query("SELECT * FROM all_peoples");
     return $st->fetchAll();
-    // $this->people_list = $this->db->queryAll("select * from peoples");
-    // return $this->people_list;
   }
 
-  function get_man($id) {
-    $st = $this->db->query("SELECT * FROM peoples WHERE id=".$id);
+  function get_man_by_id($id) {
+    $st = $this->db->query("SELECT * FROM peoples WHERE id=$id");
     $res = $st->fetchAll();
     return $res[0];
+  }
+
+  function get_man_by_name($fn, $ln) {
+    $st = $this->db->query("SELECT * FROM peoples WHERE fname=$fn AND lname=$ln");
+    $res = $st->fetchAll();
+    return $res;
   }
 
   function show_peoples() {
@@ -44,7 +44,7 @@ class peoples {
   }
 
   function show_people($id) {
-  	$tmp = $this->get_man($id);
+  	$tmp = $this->get_man_by_id($id);
   	$res .= "<div>Фамилия: $tmp[lname] </div>";
   	$res .= "<div>Имя: $tmp[fname] </div>";
   	$res .= "<div>Отчество: $tmp[mname] </div>";
@@ -71,7 +71,7 @@ class peoples {
   }
 
   function update_man($data) {
-    $before = $this->get_man($data["id"]);
+    $before = $this->get_man_by_id($data["id"]);
     // foreach ($before as $key => $value) {
   	// 	echo "$key - $value<br>";
   	// }

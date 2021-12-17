@@ -31,7 +31,7 @@ switch ($url[1]) {
 				if($_POST["addpeople"]) {
 					// add_people($_POST);
 					$man->add_man($_POST);
-					header("Location: " . ROOT . "people/");
+					header("Location: " . ROOT . "people");
 					// exit;
 				}
 				$content->options_sex=get_options("sex", "sex");
@@ -44,7 +44,7 @@ switch ($url[1]) {
 				if($_POST["updatepeople"]) {
 					// add_people($_POST);
 					$man->update_man($_POST);
-					header("Location: " . ROOT . "people/");
+					header("Location: " . ROOT . "people");
 					exit;
 				}
 				// edit selected man
@@ -65,7 +65,7 @@ switch ($url[1]) {
 				break;
 			case "del":
 				$man->del_man($url[3]);
-				header("Location: " . ROOT . "people/");
+				header("Location: " . ROOT . "people");
 				break;
 			default:
 				$content = new template("list.tpl");
