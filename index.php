@@ -8,6 +8,7 @@ require_once(DOCROOT . "classes" . DIRECTORY_SEPARATOR . "sqlite.php");
 require_once(DOCROOT . "classes" . DIRECTORY_SEPARATOR . "template.php");
 require_once(DOCROOT . "classes" . DIRECTORY_SEPARATOR . "funcs.php");
 require_once(DOCROOT . "classes" . DIRECTORY_SEPARATOR . "peoples.php");
+require_once(DOCROOT . "classes" . DIRECTORY_SEPARATOR . "orders.php");
 
 function getURL() {
 	$uri = explode("/", $_SERVER["REQUEST_URI"]);
@@ -18,6 +19,7 @@ function getURL() {
 }
 
 $man = new peoples();
+$order = new orders();
 $url = getURL();
 switch ($url[1]) {
 	// case "test":
@@ -94,7 +96,7 @@ switch ($url[1]) {
 			default:
 				$content = new template("list.tpl");
 				$content->list_head="Список приказов:";
-				$content->list_body=show_orders();
+				$content->list_body=$order->show_orders();
 				// header("Location: " . $_SERVER["REQUEST_URI"] . "/add/");
 				break;
 		}
