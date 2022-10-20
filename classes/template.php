@@ -13,7 +13,7 @@ class template {
   * Class Constructor
   */
   public function __construct($template){
-    $this->template = DOCROOT . 'templates' . DIRECTORY_SEPARATOR . $template;
+    $this->template = DOCROOT . "templates/$template.php";
   }
 
   /* __get() and __set() are run when writing data to inaccessible properties.

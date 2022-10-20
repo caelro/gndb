@@ -1,8 +1,6 @@
 <?php
-session_start();
-
-define("ROOT", $_SERVER["REQUEST_SCHEME"] . "://" . $_SERVER["HTTP_HOST"] . "/");
-define("DOCROOT", realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
+define("ROOT", ($_SERVER["REQUEST_SCHEME"] ?? 'http') . "://" . $_SERVER["HTTP_HOST"] . "/");
+define("DOCROOT", realpath(__DIR__) . DIRECTORY_SEPARATOR);
 
 require_once(DOCROOT . "classes" . DIRECTORY_SEPARATOR . "sqlite.php");
 require_once(DOCROOT . "classes" . DIRECTORY_SEPARATOR . "template.php");
@@ -21,16 +19,17 @@ function getURL() {
 $man = new peoples();
 $order = new orders();
 $url = getURL();
+$url[2] ??= '';
 switch ($url[1]) {
 	// case "test":
 	// 	test_add_man();
 	// 	break;
 	case "people":
-		$content = new template("people.tpl");
+		$content = new template("people");
 		switch ($url[2]) {
 			case "add":
 				// add new man
-				if($_POST["addpeople"]) {
+				if($_POST) {
 					// add_people($_POST);
 					$man->add_man($_POST);
 					header("Location: " . ROOT . "people");
@@ -43,7 +42,7 @@ switch ($url[1]) {
 				$content->val_addpeople="Добавить нового сотрудника";
 				break;
 			case "edit":
-				if($_POST["updatepeople"]) {
+				if($_POST) {
 					// add_people($_POST);
 					$man->update_man($_POST);
 					header("Location: " . ROOT . "people");
@@ -51,7 +50,7 @@ switch ($url[1]) {
 				}
 				// edit selected man
 				// $tmp=get_table_row("peoples","where peopleid=" . $url[3]);
-				$tmp=$man->get_man($url[3]);
+				$tmp=$man->get_man_by_id($url[3]);
 				$content->val_id=$tmp["id"];
 				$content->val_lname=$tmp["lname"];
 				$content->val_fname=$tmp["fname"];
@@ -70,7 +69,7 @@ switch ($url[1]) {
 				header("Location: " . ROOT . "people");
 				break;
 			default:
-				$content = new template("list.tpl");
+				$content = new template("list");
 				$content->list_head="Список сотрудников:";
 				($url[2]!="") ? $content->list_item=$man->show_people($url[2]) : "";
 				$content->list_body=$man->show_peoples();
@@ -79,7 +78,7 @@ switch ($url[1]) {
 		}
 		break;
 	case "order":
-		$content = new template("order.tpl");
+		$content = new template("order");
 		switch ($url[2]) {
 			case "add":
 				$content->options_departments=get_options("departments", "department");
@@ -94,7 +93,7 @@ switch ($url[1]) {
 				break;
 
 			default:
-				$content = new template("list.tpl");
+				$content = new template("list");
 				$content->list_head="Список приказов:";
 				$content->list_body=$order->show_orders();
 				// header("Location: " . $_SERVER["REQUEST_URI"] . "/add/");
@@ -102,10 +101,10 @@ switch ($url[1]) {
 		}
 		break;
 	// case "report":
-  //       $content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "report.tpl");
+	// 	$content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "report.php");
 	// 	break;
 	default:
-		$content = new template("content.tpl");
+		$content = new template("content");
 		// $content->cont_head="ООО "Газпром газнадзор"<br>филиал Волгоградское управление";
 		$content->cont_head="<h2>Сегодня: " . date("d.m.Y") . "</h2>";
 		$content->cont_body="Сотрудников в коммандировке: 15<br>Сотрудников в отпуске: 7<br>Сотрудников на больничном: 2";
@@ -113,7 +112,7 @@ switch ($url[1]) {
 }
 
 // $menu=make_menu($url[1]);
-$menu = new template("menu.tpl");
+$menu = new template("menu");
 ?>
 
 <!DOCTYPE html>

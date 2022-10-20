@@ -32,7 +32,7 @@ class peoples {
   	foreach ($this->get_list_peoples() as $val) {
   		$res .= "<tr>" .
   		"<td>$num</td>" .
-  		"<td><a href=\"/people/$val[id]\">$val[fullname]</a></td>" .
+  		"<td><a href=\"/people/edit/$val[id]\">$val[fullname]</a></td>" .
   		"<td>$val[department]</td>" .
       "<td>$val[position]</td>" .
   		"<td><a href=\"/people/edit/$val[id]\">редактировать</a> <a href=\"/people/del/$val[id]\" onclick=\"return confirm('Точно удалить?')\" LANGUAGE=\"Javascript\">удалить</a></td>" .
@@ -100,5 +100,3 @@ class peoples {
     $this->db->exec("UPDATE peoples SET fired=1 WHERE id=$id");
   }
 }
-
-?>

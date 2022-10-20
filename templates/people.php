@@ -5,7 +5,7 @@
 //	});
 </script>
 
-<form action="" method="post" name="addpeople">
+<form action="" method="post">
 	<input type="hidden" name="id" value="<?=$val_id;?>"><br />
 	Фамилия:<br />
 	<input type="text" name="lname" placeholder="Фамилия" required value="<?=$val_lname;?>"><br />
