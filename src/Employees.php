@@ -26,7 +26,7 @@ class Employees {
 
   function get_list_html() {
 		//todo: а в чём прикол было заводить шаблоны, если в итоге htm формируется даже не в контроллере, а в модели? :)
-  	$res = "<tr><th>#</th><th>Ф.И.О.</th><th>Отдел</th><th>Должность</th><th>Действие</th></tr>";
+  	$res = "<tr><th>#</th><th>Ф.И.О.</th><th>Отдел</th><th>Должность</th><th></th></tr>";
   	$num = 1;
   	foreach ($this->get_list() as $val) {
   		$res .= "<tr>" .
@@ -36,7 +36,7 @@ class Employees {
       "<td>$val[position]</td>" .
 			//todo: навешивать обработчики на каждую строку - плохо, тем более не вызов функции, а прям текст. потом разберёмся
 			//todo: и хуже всего, что если жс не работает, то удаление будет без запроса. надо чтобы наоборот удаление работало только если сработал жс
-  		"<td><a href=\"/employees/edit/$val[id]\">редактировать</a> <a href=\"/employees/del/$val[id]\" onclick=\"return confirm('Точно удалить?')\" LANGUAGE=\"Javascript\">удалить</a></td>" .
+  		"<td><a href=\"/employees/edit/$val[id]\"><i class=\"fa fa-pencil\"></i></a> <a href=\"/employees/del/$val[id]\" onclick=\"return confirm('Точно удалить?')\" LANGUAGE=\"Javascript\"><i class=\"far fa-trash-can\"></i></a></td>" .
   		"</tr>\n";
   		$num++;
   	}
