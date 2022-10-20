@@ -1,26 +1,21 @@
 <?php
 
 class Employees {
-  private $db;
-  public $man = array();
-
-  function __construct() {
-    $this->db = getDB();
-  }
+	private string $table_name = 'employees';
 
   function get_list() {
-    $st = $this->db->query("SELECT * FROM all_employees");
-    return $st->fetchAll();
+		return getDB()->query("select * from all_employees")->fetchAll();
   }
 
   function get_by_id($id) {
-    $st = $this->db->query("SELECT * FROM employees WHERE id=$id");
-    $res = $st->fetchAll();
-    return $res[0];
+    $st = getDB()->prepare("select * from employees where id = ?");
+		$st->execute([$id]);
+    return $st->fetch();
   }
 
   function get_by_name($fn, $ln) {
-    $st = $this->db->query("SELECT * FROM employees WHERE fname=$fn AND lname=$ln");
+    $st = getDB()->prepare('select * from employees where fname = ? and lname = ?');
+		$st->execute([$fn, $ln]);
     return $st->fetchAll();
   }
 
@@ -53,52 +48,11 @@ class Employees {
   	return $result;
   }
 
-  function add_man($data) {
-    // foreach ($data as $key => $value) {
-  	// 	echo "$key - $value<br>";
-  	// }
-    $q = "INSERT INTO employees (lname,fname,mname,birthday,sexid,departmentid,positionid,tab_N,orderdate) VALUES (:lname,:fname,:mname,:bday,:sex,:dep,:pos,:tN,:odate)";
-    $stmt = $this->db->prepare($q);
-    $stmt->execute([
-      ":lname"=>$data[lname],
-      ":fname"=>$data[fname],
-      ":mname"=>$data[mname],
-      ":bday"=>$data[bday] ? $data[bday] : NULL,
-      ":sex"=>$data[sex],
-      ":dep"=>$data[department],
-      ":pos"=>$data[position],
-      ":tN"=>$data[tabN] ? $data[tabN] : NULL,
-      ":odate"=>$data[odate] ? $data[odate] : NULL
-    ]);
+  function save(array $row, ?int $id = null): bool {
+		return $id ? update_record($this->table_name, $row, $id) : insert_record($this->table_name, $row);
   }
 
-  function update_man($data) {
-    $before = $this->get_by_id($data["id"]);
-    // foreach ($before as $key => $value) {
-  	// 	echo "$key - $value<br>";
-  	// }
-    // echo "<hr>";
-    // foreach ($data as $key => $value) {
-    //   echo "$key - $value<br>";
-    // }
-    // echo "<hr>";
-    $q = "UPDATE employees SET lname=:lname,fname=:fname,mname=:mname,birthday=:bday,sexid=:sex,departmentid=:dep,positionid=:pos,tab_N=:tN,orderdate=:odate WHERE id=$data[id]";
-    $stmt = $this->db->prepare($q);
-    $stmt->execute([
-      ":lname"=>$data[lname],
-      ":fname"=>$data[fname],
-      ":mname"=>$data[mname],
-      ":bday"=>$data[bday] ? $data[bday] : NULL,
-      ":sex"=>$data[sex],
-      ":dep"=>$data[department],
-      ":pos"=>$data[position],
-      ":tN"=>$data[tabN] ? $data[tabN] : NULL,
-      ":odate"=>$data[odate] ? $data[odate] : NULL
-    ]);
-  }
-
-  function del_man($id) {
-    // $this->db->exec("DELETE FROM employees WHERE id=$id");
-    $this->db->exec("UPDATE employees SET fired=1 WHERE id=$id");
+  function delete(int $id): bool {
+		return update_record($this->table_name, ['fired' => 1], $id);
   }
 }

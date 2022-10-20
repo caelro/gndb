@@ -4,35 +4,35 @@
 //		$("#fname").val("Alexander");
 //	});
 </script>
-
+<h3><?= ($id ?? 0) ? 'Редактирование' : 'Добавление' ?> сотрудника</h3>
 <form action="" method="post">
-	<input type="hidden" name="id" value="<?=$val_id;?>"><br />
+	<input type="hidden" name="id" value="<?=$id ?? ''?>">
 	Фамилия:<br />
-	<input type="text" name="lname" placeholder="Фамилия" required value="<?=$val_lname;?>"><br />
+	<input type="text" name="lname" placeholder="Фамилия" required value="<?=$lname ?? ''?>"><br />
 	Имя:<br />
-	<input type="text" name="fname" placeholder="Имя" required value="<?=$val_fname;?>"><br />
+	<input type="text" name="fname" placeholder="Имя" required value="<?=$fname ?? ''?>"><br />
 	Отчество:<br />
-	<input type="text" name="mname" placeholder="Отчество" required value="<?=$val_mname;?>"><br />
+	<input type="text" name="mname" placeholder="Отчество" required value="<?=$mname ?? ''?>"><br />
 	Пол:<br />
-	<select name="sex" required>
+	<select name="sexid" required>
 		<option disabled selected value="">Пол</option>
-		<?=$options_sex;?>
+		<?=$sexid?>
 	</select><br />
 	День рождения:<br />
-	<input type="date" name="bday" value="<?=$val_bday;?>"><br />
+	<input type="date" name="birthday" value="<?=$birthday ?? ''?>"><br />
 	Отдел:<br />
-	<select name="department" required>
+	<select name="departmentid" required>
 		<option disabled selected value="">Отдел</option>
-		<?=$options_departments;?>
+		<?=$departmentid?>
 	</select><br />
 	Должность:<br />
-	<select name="position" required>
+	<select name="positionid" required>
 		<option disabled selected value="">Должность</option>
-		<?=$options_positions;?>
+		<?=$positionid?>
 	</select><br />
 	Табельный номер:<br />
-	<input type="text" name="tabN" placeholder="Табельный номер" value="<?=$val_tabn;?>"><br />
+	<input type="text" name="tab_n" placeholder="Табельный номер" value="<?=$tab_n ?? ''?>"><br />
 	Дата назначения:<br />
-	<input type="date" name="odate" value="<?=$val_odate;?>"><br />
-	<input type="submit" value="<?=$val_submit?>">
+	<input type="date" name="orderdate" value="<?=$orderdate ?? ''?>"><br />
+	<input type="submit" value="Сохранить">
 </form>

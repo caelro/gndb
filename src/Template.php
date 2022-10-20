@@ -8,6 +8,11 @@ class Template {
     $this->file_name = PROJECT_ROOT . "/templates/$name.php";
   }
 
+	public function set(array $values): static {
+		$this->vars = $values;
+		return $this;
+	}
+
   public function __get(string $name): mixed {
     return $this->vars[$name];
   }

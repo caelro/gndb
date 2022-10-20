@@ -1,6 +1,9 @@
 <?php
-define("ROOT_URL", ($_SERVER["REQUEST_SCHEME"] ?? 'http') . "://" . $_SERVER["HTTP_HOST"] . "/");
-define("PROJECT_ROOT", realpath(__DIR__));
+error_reporting(E_ALL);
+mb_internal_encoding('UTF-8');
+date_default_timezone_set('Europe/Moscow');
+define("ROOT_URL", ($_SERVER["REQUEST_SCHEME"] ?? 'http') . "://" . $_SERVER["HTTP_HOST"] . "/"); // сейчас не нужен нигде
+const PROJECT_ROOT = __DIR__;
 const DB_DSN = 'sqlite:' . PROJECT_ROOT . '/data/db.sqlite';
 
 set_include_path(PROJECT_ROOT . '/src');
@@ -29,37 +32,36 @@ switch ($url[1]) {
 			case "add":
 				// add new man
 				if($_POST) {
-					$man->add_man($_POST);
+					unset($_POST['id']);
+					$man->save($_POST);
 					header('Location: /employees');
-					// exit;
+					exit;
 				}
-				$content->options_sex=get_select_options_html("sex", "sex");
-				$content->options_departments=get_select_options_html("departments", "department");
-				$content->options_positions=get_select_options_html("positions", "position");
-				$content->val_submit="Добавить нового сотрудника";
+				$content->set([
+					'sexid' => get_select_options_html('sex', 'sex'),
+					'departmentid' => get_select_options_html('departments', 'department'),
+					'positionid' => get_select_options_html('positions', 'position'),
+				]);
 				break;
 			case "edit":
 				if($_POST) {
-					$man->update_man($_POST);
+					$row = $_POST;
+					$id = $row['id'];
+					unset($row['id']);
+					$man->save($row, $id);
 					header('Location: /employees');
 					exit;
 				}
 				// edit selected man
-				$tmp=$man->get_by_id($url[3]);
-				$content->val_id=$tmp["id"];
-				$content->val_lname=$tmp["lname"];
-				$content->val_fname=$tmp["fname"];
-				$content->val_mname=$tmp["mname"];
-				$content->val_bday=$tmp["birthday"];
-				$content->val_tabn=$tmp["tab_N"];
-				$content->val_odate=$tmp["orderdate"];
-				$content->options_sex=get_select_options_html("sex", "sex", $tmp["sexid"]);
-				$content->options_departments=get_select_options_html("departments", "department", $tmp["departmentid"]);
-				$content->options_positions=get_select_options_html("positions", "position", $tmp["positionid"]);
-				$content->val_submit="Обновить данные сотрудника";
+				$row = $man->get_by_id($url[3]);
+				$row['sexid'] = get_select_options_html('sex', 'sex', $row['sexid']);
+				$row['departmentid'] = get_select_options_html('departments', 'department', $row['departmentid']);
+				$row['positionid'] = get_select_options_html('positions', 'position', $row['positionid']);
+
+				$content->set($row);
 				break;
 			case "del":
-				$man->del_man($url[3]);
+				$man->delete($url[3]);
 				header('Location: /employees');
 				break;
 			default:

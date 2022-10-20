@@ -135,11 +135,11 @@ CREATE TABLE IF NOT EXISTS "employees" (
  	"sexid"	INTEGER REFERENCES "sex"("id"),
  	"departmentid"	INTEGER REFERENCES "departments"("id"),
  	"positionid"	INTEGER REFERENCES "positions"("id"),
- 	"tab_N"	TEXT DEFAULT NULL,
+ 	"tab_n"	TEXT DEFAULT NULL,
  	"orderdate"	DATE,
 	"fired" BOOLEAN DEFAULT 0
 );
-INSERT INTO "employees" ("lname","fname","mname","birthday","sexid","departmentid","positionid","tab_N","orderdate","fired") VALUES
+INSERT INTO "employees" ("lname","fname","mname","birthday","sexid","departmentid","positionid","tab_n","orderdate","fired") VALUES
   ('Иванов','Иван','Иванович','1980-01-01',1,9,7,'1111',NULL,0),
   ('Петров','Петр','Петрович',NULL,1,10,8,'2222',NULL,0),
   ('Семенов','Семен','Семенович',NULL,1,9,8,'3333',NULL,0);
