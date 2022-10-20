@@ -1,12 +1,11 @@
 <?php
 define("ROOT", ($_SERVER["REQUEST_SCHEME"] ?? 'http') . "://" . $_SERVER["HTTP_HOST"] . "/");
-define("DOCROOT", realpath(__DIR__) . DIRECTORY_SEPARATOR);
+define("DOCROOT", realpath(__DIR__));
 
-require_once(DOCROOT . "classes" . DIRECTORY_SEPARATOR . "sqlite.php");
-require_once(DOCROOT . "classes" . DIRECTORY_SEPARATOR . "template.php");
-require_once(DOCROOT . "classes" . DIRECTORY_SEPARATOR . "funcs.php");
-require_once(DOCROOT . "classes" . DIRECTORY_SEPARATOR . "peoples.php");
-require_once(DOCROOT . "classes" . DIRECTORY_SEPARATOR . "orders.php");
+set_include_path(DOCROOT . '/src');
+spl_autoload_extensions('.php');
+spl_autoload_register();
+require 'functions.php';
 
 function getURL() {
 	$uri = explode("/", $_SERVER["REQUEST_URI"]);
@@ -49,7 +48,6 @@ switch ($url[1]) {
 					exit;
 				}
 				// edit selected man
-				// $tmp=get_table_row("peoples","where peopleid=" . $url[3]);
 				$tmp=$man->get_man_by_id($url[3]);
 				$content->val_id=$tmp["id"];
 				$content->val_lname=$tmp["lname"];
@@ -100,9 +98,6 @@ switch ($url[1]) {
 				break;
 		}
 		break;
-	// case "report":
-	// 	$content->get_tpl(DOCROOT . "templates" . DIRECTORY_SEPARATOR . "report.php");
-	// 	break;
 	default:
 		$content = new template("content");
 		// $content->cont_head="ООО "Газпром газнадзор"<br>филиал Волгоградское управление";

@@ -7,11 +7,6 @@ function get_table($name) {
 	return $st->fetchAll();
 }
 
-function get_table_row($name, $addin = NULL) {
-	$db = new sqlite("db.sqlite");
-	return $db->queryRow("SELECT * FROM " . $name . " " . $addin);
-}
-
 // function add_record($args) {
 // 	$db = new sqlite("db.sqlite");
 // 	if ($args["addmission"]) {
