@@ -3,7 +3,7 @@ BEGIN TRANSACTION;
 
 --сначала все удаляем!!!
 DROP TABLE IF EXISTS "orders";
-DROP TABLE IF EXISTS "peoples";
+DROP TABLE IF EXISTS "employees";
 DROP TABLE IF EXISTS "order_types";
 DROP TABLE IF EXISTS "sex";
 DROP TABLE IF EXISTS "positions";
@@ -126,7 +126,7 @@ INSERT INTO "order_types" ("id","type","letter","priority") VALUES
  (37,'Время неявок на работу при прохождении работником диспансеризации в соответствии с законодательством с сохранением за ним места работы (должности) и среднего заработка','Д',1000);
 
 --сотрудники
-CREATE TABLE IF NOT EXISTS "peoples" (
+CREATE TABLE IF NOT EXISTS "employees" (
  	"id"	INTEGER PRIMARY KEY AUTOINCREMENT,
  	"lname"	TEXT NOT NULL,
  	"fname"	TEXT NOT NULL,
@@ -139,7 +139,7 @@ CREATE TABLE IF NOT EXISTS "peoples" (
  	"orderdate"	DATE,
 	"fired" BOOLEAN DEFAULT 0
 );
-INSERT INTO "peoples" ("lname","fname","mname","birthday","sexid","departmentid","positionid","tab_N","orderdate","fired") VALUES
+INSERT INTO "employees" ("lname","fname","mname","birthday","sexid","departmentid","positionid","tab_N","orderdate","fired") VALUES
   ('Иванов','Иван','Иванович','1980-01-01',1,9,7,'1111',NULL,0),
   ('Петров','Петр','Петрович',NULL,1,10,8,'2222',NULL,0),
   ('Семенов','Семен','Семенович',NULL,1,9,8,'3333',NULL,0);
@@ -147,8 +147,8 @@ INSERT INTO "peoples" ("lname","fname","mname","birthday","sexid","departmentid"
 --приказы
 CREATE TABLE IF NOT EXISTS "orders" (
 	"id"	INTEGER PRIMARY KEY AUTOINCREMENT,
-	"peopleid"	INTEGER REFERENCES "peoples"("id"),
-	"typeid"	INTEGER REFERENCES "order_types"("id"),
+	"employee_id"	INTEGER REFERENCES employees(id),
+	"typeid"	INTEGER REFERENCES order_types(id),
 	"bdate"	DATE,
 	"edate"	DATE,
 	-- "objectid"	INTEGER REFERENCES "objects"("id"),
@@ -174,7 +174,7 @@ CREATE VIEW all_autos AS SELECT
 DROP VIEW IF EXISTS "all_orders_2021";
 CREATE VIEW all_orders_2021 AS SELECT
 			 o.id,
-       p.lname || ' ' || p.fname || ' ' || p.mname AS fullname,
+       e.lname || ' ' || e.fname || ' ' || e.mname AS fullname,
        d.department,
        mt.type,
        date('now', 'start of month') AS bmonth,
@@ -187,31 +187,31 @@ CREATE VIEW all_orders_2021 AS SELECT
        o.AOreceive
   FROM orders AS o
        JOIN
-       peoples AS p ON p.id = o.peopleid
+       employees AS e ON e.id = o.employee_id
        JOIN
-       departments AS d ON p.departmentid = d.id
+       departments AS d ON e.departmentid = d.id
        JOIN
        order_types AS mt ON mt.id = o.typeid
  WHERE o.edate < date('2021-12-31');
  -- WHERE o.edate > date('now');
 
-DROP VIEW IF EXISTS "all_peoples";
-CREATE VIEW all_peoples AS SELECT
-			 p.id AS id,
-       p.lname || ' ' || p.fname || ' ' || p.mname AS fullname,
-       p.departmentid,
+DROP VIEW IF EXISTS "all_employees";
+CREATE VIEW all_employees AS SELECT
+			 e.id AS id,
+       e.lname || ' ' || e.fname || ' ' || e.mname AS fullname,
+       e.departmentid,
        d.department,
        pos.position
-  FROM peoples AS p
+  FROM employees AS e
        JOIN
-       sex AS s ON p.sexid = s.id
+       sex AS s ON e.sexid = s.id
        JOIN
-       departments AS d ON p.departmentid = d.id
+       departments AS d ON e.departmentid = d.id
        JOIN
-       positions AS pos ON p.positionid = pos.id
- WHERE p.fired = 0
- ORDER BY p.departmentid,
-          p.positionid;
+       positions AS pos ON e.positionid = pos.id
+ WHERE e.fired = 0
+ ORDER BY e.departmentid,
+          e.positionid;
 
 DROP VIEW IF EXISTS "all_types";
 CREATE VIEW all_types AS SELECT

@@ -4,9 +4,9 @@
 	});
 
 	function showDepartment(department) {
-		$("#people option").hide();
-		$("#people").prop("selectedIndex",0);
-		$("#people option[otdel=" + department + "]").show();
+		$("#employee option").hide();
+		$("#employee").prop("selectedIndex",0);
+		$("#employee option[otdel=" + department + "]").show();
 	}
 </script>
 
@@ -15,9 +15,9 @@
 		<option disabled selected value="">Отдел</option>
 		<?=$options_departments;?>
 	</select><br />
-	<select name="people" id="people" required>
+	<select name="employee" id="employee" required>
 		<option disabled selected value="">Ф.И.О.</option>
-		<?=$options_peoples;?>
+		<?=$options_employees;?>
 	</select><br />
 	<select name="type" required>
 		<option disabled selected value="">тип события</option>

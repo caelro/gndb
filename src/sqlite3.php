@@ -1,24 +1,29 @@
 <?php
 
 // initialize
-$db = new DB('db.sqlite');
+$db = getDB();
 
 // create the database structure
-$query = 'CREATE TABLE IF NOT EXISTS "foobar" (
-            "id" INTEGER PRIMARY KEY AUTOINCREMENT,
-            "name" TEXT
-          );';
-$db->query($query);
+$query = "
+	CREATE TABLE IF NOT EXISTS foobar (
+		id INTEGER PRIMARY KEY AUTOINCREMENT,
+		name TEXT
+	)
+";
+$db->exec($query);
 
 // insert some data to the database
-$query = array(
-    "INSERT INTO foobar VALUES(1,'LOLOLOL');",
-    "INSERT INTO foobar VALUES(2,'Lorem Ipsum....');"
-);
+$sql ='
+	INSERT INTO foobar VALUES
+		(1, "LOLOLOL"),
+		(2, "Lorem Ipsum....")
+';
+$db->exec($sql);
 
-foreach ($query as $key):
-    $db->query($key);
-endforeach;
+return;
+//todo: дальше сам исправишь
+// лучше всё же использовать prepared statements с параметрами, а не стряпать запросы напрямую.
+// иногда так может быть и быстрее, но лучше делать это на более высоком уровне
 
 // query example, multiple rows
 $users = $db->queryAll("SELECT * FROM foobar");

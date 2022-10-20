@@ -5,7 +5,7 @@ class orders {
   public $order = array();
 
   function __construct() {
-    $this->db = new PDO("sqlite:db.sqlite");
+    $this->db = getDB();
   }
 
   function get_list_orders() {

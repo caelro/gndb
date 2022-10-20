@@ -34,5 +34,5 @@
 	<input type="text" name="tabN" placeholder="Табельный номер" value="<?=$val_tabn;?>"><br />
 	Дата назначения:<br />
 	<input type="date" name="odate" value="<?=$val_odate;?>"><br />
-	<input type="submit" name="<?=$name_addpeople;?>" value="<?=$val_addpeople;?>">
+	<input type="submit" value="<?=$val_submit?>">
 </form>

@@ -13,7 +13,7 @@ class template {
   * Class Constructor
   */
   public function __construct($template){
-    $this->template = DOCROOT . "/templates/$template.php";
+    $this->template = PROJECT_ROOT . "/templates/$template.php";
   }
 
   /* __get() and __set() are run when writing data to inaccessible properties.
@@ -33,14 +33,10 @@ class template {
   /*
   * Convert Object To String
   */
-  public function __toString(){
+  public function __toString(): string {
     extract($this->vars); // extract our template variables ex: $value
-    // print_r($this->vars ) ;  testing
-    chdir(dirname($this->template));
     ob_start(); // store as internal buffer
-
-    include basename($this->template);  // include the template into our file
-
+    include $this->template;  // include the template into our file
     return ob_get_clean();
   }
 }
