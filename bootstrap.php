@@ -23,8 +23,8 @@ switch ($url[1]) {
 	// 	test_add_man();
 	// 	break;
 	case 'employees':
-		$content = new template('employee');
-		$man = new employees();
+		$content = new Template('employee');
+		$man = new Employees();
 		switch ($url[2]) {
 			case "add":
 				// add new man
@@ -63,7 +63,7 @@ switch ($url[1]) {
 				header('Location: /employees');
 				break;
 			default:
-				$content = new template("list");
+				$content = new Template("list");
 				$content->list_head="Список сотрудников:";
 				$content->list_body=$man->get_list_html();
 				// header("Location: " . $_SERVER["REQUEST_URI"] . "/add/");
@@ -71,8 +71,8 @@ switch ($url[1]) {
 		}
 		break;
 	case "order":
-		$order = new orders();
-		$content = new template("order");
+		$order = new Orders();
+		$content = new Template("order");
 		switch ($url[2]) {
 			case "add":
 				$content->options_departments=get_select_options_html("departments", "department");
@@ -87,22 +87,22 @@ switch ($url[1]) {
 				break;
 
 			default:
-				$content = new template("list");
+				$content = new Template("list");
 				$content->list_head="Список приказов:";
-				$content->list_body=$order->show_orders();
+				$content->list_body=$order->get_list_html();
 				// header("Location: " . $_SERVER["REQUEST_URI"] . "/add/");
 				break;
 		}
 		break;
 	default:
-		$content = new template("content");
+		$content = new Template("content");
 		// $content->cont_head="ООО "Газпром газнадзор"<br>филиал Волгоградское управление";
 		$content->cont_head="<h2>Сегодня: " . date("d.m.Y") . "</h2>";
 		$content->cont_body="Сотрудников в коммандировке: 15<br>Сотрудников в отпуске: 7<br>Сотрудников на больничном: 2";
 		break;
 }
-$layout = new template('main');
+$layout = new Template('main');
 $layout->title = 'ООО "Газпром газнадзор" Волгоградский филиал';
-$layout->menu = new template('menu');
+$layout->menu = new Template('menu');
 $layout->content = $content;
 echo $layout;

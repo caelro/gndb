@@ -1,6 +1,6 @@
 <?php
 
-class employees {
+class Employees {
   private $db;
   public $man = array();
 

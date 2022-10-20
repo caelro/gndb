@@ -1,6 +1,6 @@
 <?php
 
-class orders {
+class Orders {
   private $db;
   public $order = array();
 
@@ -8,15 +8,15 @@ class orders {
     $this->db = getDB();
   }
 
-  function get_list_orders() {
+  function get_list() {
     $st = $this->db->query("SELECT * FROM all_orders_2021");
     return $st->fetchAll();
   }
 
-  function show_orders() {
+  function get_list_html() {
   	$res = "<tr><th>#</th><th>Ф.И.О.</th><th>Отдел</th><th>Тип</th><th>Период</th><th>Действие</th></tr>";
   	$num = 1;
-  	foreach ($this->get_list_orders() as $val) {
+  	foreach ($this->get_list() as $val) {
   		$res .= "<tr>" .
   		"<td>$num</td>" .
   		"<td>$val[fullname]</td>" .
