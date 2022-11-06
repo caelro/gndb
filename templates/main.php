@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-	<title><?=$title?></title>
+	<title><?= Config::$siteTitle ?></title>
 	<!--<link rel="stylesheet" href="/vendor/bootstrap/bootstrap.min.css"/> -->
 	<link rel="stylesheet" href="/vendor/fontawesome-free-6.1.0-web/css/all.min.css">
 	<link rel="stylesheet" href="/css/styles.css"/>
@@ -13,7 +13,7 @@
 <body>
 <div class="layout">
 	<div class="sidebar">
-		<?= $menu ?>
+		<?= Template::render('menu') ?>
 	</div>
 	<div class="content">
 		<?= $content ?>

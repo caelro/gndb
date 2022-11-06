@@ -171,48 +171,6 @@ CREATE VIEW all_autos AS SELECT
        a.autotype || ' (' || a.autonum || ')' AS auto
   FROM autos AS a;
 
-DROP VIEW IF EXISTS "all_orders_2021";
-CREATE VIEW all_orders_2021 AS SELECT
-			 o.id,
-       e.lname || ' ' || e.fname || ' ' || e.mname AS fullname,
-       d.department,
-       mt.type,
-       date('now', 'start of month') AS bmonth,
-       o.bdate,
-       o.edate,
-       date('now', 'start of month', '+1 month', '-1 day') AS emonth,
-       o.object,
-       o.numorder,
-       o.AOsend,
-       o.AOreceive
-  FROM orders AS o
-       JOIN
-       employees AS e ON e.id = o.employee_id
-       JOIN
-       departments AS d ON e.departmentid = d.id
-       JOIN
-       order_types AS mt ON mt.id = o.typeid
- WHERE o.edate < date('2021-12-31');
- -- WHERE o.edate > date('now');
-
-DROP VIEW IF EXISTS "all_employees";
-CREATE VIEW all_employees AS SELECT
-			 e.id AS id,
-       e.lname || ' ' || e.fname || ' ' || e.mname AS fullname,
-       e.departmentid,
-       d.department,
-       pos.position
-  FROM employees AS e
-       JOIN
-       sex AS s ON e.sexid = s.id
-       JOIN
-       departments AS d ON e.departmentid = d.id
-       JOIN
-       positions AS pos ON e.positionid = pos.id
- WHERE e.fired = 0
- ORDER BY e.departmentid,
-          e.positionid;
-
 DROP VIEW IF EXISTS "all_types";
 CREATE VIEW all_types AS SELECT
 			 t.id AS id,

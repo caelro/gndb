@@ -1,2 +1,0 @@
-<?=$list_head;?>
-<?=$list_body;?>
