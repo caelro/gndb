@@ -1,0 +1,22 @@
+{
+    "editor.tabSize": 2,
+    "todo-tree.general.tags": [
+        "BUG",
+        "HACK",
+        "FIXME",
+        "TODO",
+        "XXX",
+        "[ ]",
+        "[x]",
+        "todo"
+    ],
+    "todo-tree.general.statusBar": "tags",
+    "todo-tree.general.tagGroups": {
+        "TODO": ["TODO","todo"]
+    },
+    "editor.rulers": [
+        120
+    ],
+    "workbench.tree.indent": 19,
+    "editor.fontLigatures": true
+}
